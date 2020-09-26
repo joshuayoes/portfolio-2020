@@ -1,12 +1,8 @@
 {
-  "name": "gatsby-starter-blog",
+  "name": "joshua-yoes-portfolio",
   "private": true,
-  "description": "A starter for a blog powered by Gatsby and Markdown",
+  "description": "Portfolio and blog representing Joshua yoes",
   "version": "0.1.0",
-  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
-  "bugs": {
-    "url": "https://github.com/gatsbyjs/gatsby/issues"
-  },
   "dependencies": {
     "gatsby": "^2.24.65",
     "gatsby-image": "^2.4.19",
@@ -45,16 +41,14 @@
     "prettier": "^2.1.2",
     "typescript": "^4.0.3"
   },
-  "homepage": "https://github.com/gatsbyjs/gatsby-starter-blog#readme",
   "keywords": [
+    "blog",
+    "portfolio",
+    "react",
     "gatsby"
   ],
   "license": "MIT",
   "main": "n/a",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/gatsbyjs/gatsby-starter-blog.git"
-  },
   "scripts": {
     "build": "gatsby build",
     "develop": "gatsby develop",
