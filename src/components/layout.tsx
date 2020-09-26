@@ -1,15 +1,9 @@
 import React from "react"
 import { Link } from "gatsby"
 
-import { rhythm, scale } from "../utils/typography"
+import { rhythm } from "../utils/typography"
 
-interface Props {
-  location: Location
-  title: string
-  children?: any
-}
-
-const Layout = ({ location, title, children }: Props) => {
+const Layout: React.FC = ({ children }) => {
   return (
     <div
       style={ {
@@ -21,7 +15,7 @@ const Layout = ({ location, title, children }: Props) => {
     >
       <header>
         <h3>
-          <Link to='/'>{title}</Link>
+          <Link to='/'>Home</Link>
         </h3>
       </header>
       <main>{ children }</main>
