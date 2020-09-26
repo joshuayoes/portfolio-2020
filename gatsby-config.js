@@ -1,11 +1,11 @@
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Starter Blog`,
-    author: `Kyle Mathews`,
-    description: `A starter blog demonstrating what Gatsby can do.`,
+    title: `Blog and Portfolio`,
+    author: `Joshua Yoes`,
+    description: `My personal blog and portfolio.`,
     siteUrl: `https://gatsby-starter-blog-demo.netlify.com/`,
     social: {
-      twitter: `kylemathews`,
+      twitter: `joshuayoes`,
     },
   },
   plugins: [
@@ -53,7 +53,6 @@ module.exports = {
         //trackingId: `ADD YOUR TRACKING ID HERE`,
       },
     },
-    `gatsby-plugin-feed`,
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
@@ -76,5 +75,6 @@ module.exports = {
       },
     },
     `gatsby-plugin-graphql-codegen`,
+    `gatsby-plugin-sass`,
   ],
-}
+};
