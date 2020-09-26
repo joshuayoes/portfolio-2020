@@ -25,7 +25,7 @@ const BlogIndex = ({ data }: Props) => {
     <Layout location={window.location} title={siteTitle}>
       <SEO title="All posts" />
       <Bio />
-      {posts.map(({ node }) => {
+      {posts.map(({ node }: {node: any}) => {
         const title = node.frontmatter.title || node.fields.slug
         return (
           <div key={node.fields.slug}>

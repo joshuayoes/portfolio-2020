@@ -1,2 +1,1 @@
 declare module "typography-theme-twin-peaks";
-declare module "react-helmet";
