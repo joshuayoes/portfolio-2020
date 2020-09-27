@@ -3,6 +3,18 @@ $md: 768px;
 $lg: 992px;
 $xl: 1200px;
 
+$primary: #425bb5;
+$dark: rgb(51, 51, 51);
+
+:export {
+  primary: $primary;
+  dark: $dark;
+  sm: $sm;
+  md: $md;
+  lg: $lg;
+  xl: $xl;
+}
+
 @mixin breakpoint($point) {
   @if $point == xl {
     @media (min-width: $xl) {
@@ -21,4 +33,15 @@ $xl: 1200px;
       @content;
     }
   }
+}
+
+@mixin underline($color) {
+  background-image: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0),
+    rgba(0, 0, 0, 0) 1px,
+    $color 1px,
+    $color 2px,
+    rgba(0, 0, 0, 0) 2px
+  );
 }

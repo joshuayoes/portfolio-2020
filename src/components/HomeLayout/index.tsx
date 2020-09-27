@@ -1,11 +1,16 @@
 import React from "react"
 import { Link } from "gatsby"
 import style from "./HomeLayout.module.scss"
+import useScrollPosition from "@react-hook/window-scroll"
+import cn from "classnames"
 
 const HomeLayout: React.FC = ({ children }) => {
+  const scrollY = useScrollPosition(60)
+  const isTop = scrollY === 0
+
   return (
     <>
-      <header className={style.header}>
+      <header className={cn(style.header, { [style.top]: isTop })}>
         <div>
           <h3>
             <Link to="/">Joshua Yoes</Link>
