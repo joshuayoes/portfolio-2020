@@ -18,9 +18,10 @@ interface Props {
   pageContext: any
 }
 
-const BlogPostTemplate = ({ data, pageContext }: Props) => {
+const ProjectTemplate = ({ data, pageContext }: Props) => {
   const post = data.markdownRemark
   const { previous, next } = pageContext
+  console.log({ data, pageContext })
 
   return (
     <Layout>
@@ -36,15 +37,6 @@ const BlogPostTemplate = ({ data, pageContext }: Props) => {
       >
         {post.frontmatter.title}
       </h1>
-      <p
-        style={{
-          ...scale(-1 / 5),
-          display: `block`,
-          marginBottom: rhythm(1),
-        }}
-      >
-        {post.frontmatter.date}
-      </p>
       <div dangerouslySetInnerHTML={{ __html: post.html }} />
       <hr
         style={{
@@ -81,10 +73,10 @@ const BlogPostTemplate = ({ data, pageContext }: Props) => {
   )
 }
 
-export default BlogPostTemplate
+export default ProjectTemplate
 
 export const pageQuery = graphql`
-  query BlogPostBySlug($slug: String!) {
+  query ProjectBySlug($slug: String!) {
     site {
       siteMetadata {
         title
@@ -97,7 +89,6 @@ export const pageQuery = graphql`
       html
       frontmatter {
         title
-        date(formatString: "MMMM DD, YYYY")
         description
       }
     }

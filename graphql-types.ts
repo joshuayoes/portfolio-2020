@@ -2340,10 +2340,12 @@ export type SitePageContextNextFilterInput = {
 
 export type SitePageContextNextFrontmatter = {
   title?: Maybe<Scalars['String']>;
+  description?: Maybe<Scalars['String']>;
 };
 
 export type SitePageContextNextFrontmatterFilterInput = {
   title?: Maybe<StringQueryOperatorInput>;
+  description?: Maybe<StringQueryOperatorInput>;
 };
 
 export type SitePageContextPrevious = {
@@ -2366,10 +2368,12 @@ export type SitePageContextPreviousFilterInput = {
 
 export type SitePageContextPreviousFrontmatter = {
   title?: Maybe<Scalars['String']>;
+  description?: Maybe<Scalars['String']>;
 };
 
 export type SitePageContextPreviousFrontmatterFilterInput = {
   title?: Maybe<StringQueryOperatorInput>;
+  description?: Maybe<StringQueryOperatorInput>;
 };
 
 export type SitePageEdge = {
@@ -2474,8 +2478,10 @@ export type SitePageFieldsEnum =
   | 'context___slug'
   | 'context___previous___fields___slug'
   | 'context___previous___frontmatter___title'
+  | 'context___previous___frontmatter___description'
   | 'context___next___fields___slug'
   | 'context___next___frontmatter___title'
+  | 'context___next___frontmatter___description'
   | 'pluginCreator___id'
   | 'pluginCreator___parent___id'
   | 'pluginCreator___parent___parent___id'
@@ -3030,6 +3036,16 @@ export type BlogPostBySlugQueryVariables = Exact<{
 export type BlogPostBySlugQuery = { site?: Maybe<{ siteMetadata?: Maybe<Pick<SiteSiteMetadata, 'title' | 'author'>> }>, markdownRemark?: Maybe<(
     Pick<MarkdownRemark, 'id' | 'excerpt' | 'html'>
     & { frontmatter?: Maybe<Pick<MarkdownRemarkFrontmatter, 'title' | 'date' | 'description'>> }
+  )> };
+
+export type ProjectBySlugQueryVariables = Exact<{
+  slug: Scalars['String'];
+}>;
+
+
+export type ProjectBySlugQuery = { site?: Maybe<{ siteMetadata?: Maybe<Pick<SiteSiteMetadata, 'title' | 'author'>> }>, markdownRemark?: Maybe<(
+    Pick<MarkdownRemark, 'id' | 'excerpt' | 'html'>
+    & { frontmatter?: Maybe<Pick<MarkdownRemarkFrontmatter, 'title' | 'description'>> }
   )> };
 
 export type GatsbyImageSharpFixedFragment = Pick<ImageSharpFixed, 'base64' | 'width' | 'height' | 'src' | 'srcSet'>;

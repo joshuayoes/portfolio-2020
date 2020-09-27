@@ -24,6 +24,13 @@ module.exports = {
       },
     },
     {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        path: `${__dirname}/content/projects`,
+        name: `projects`,
+      },
+    },
+    {
       resolve: `gatsby-transformer-remark`,
       options: {
         plugins: [
@@ -77,4 +84,4 @@ module.exports = {
     `gatsby-plugin-graphql-codegen`,
     `gatsby-plugin-sass`,
   ],
-};
+}
