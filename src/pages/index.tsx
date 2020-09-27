@@ -5,6 +5,7 @@ import BackgroundImage, { IFluidObject } from "gatsby-background-image"
 import style from "./styles/index.module.scss"
 import HomeLayout from "../components/HomeLayout"
 import { scale } from "../utils/typography"
+import Typewriter from "typewriter-effect"
 
 const HomePage: React.FC<PageProps<HomePageQuery>> = ({ data }) => {
   const hero = data?.hero?.childImageSharp?.fluid
@@ -17,7 +18,19 @@ const HomePage: React.FC<PageProps<HomePageQuery>> = ({ data }) => {
         className={style.hero}
       >
         <h1 style={scale(7 / 5)}>Joshua Yoes</h1>
-        <h4>Javascript Developer</h4>
+        <h3>
+          <Typewriter
+            options={{
+              strings: [
+                "Javascript Developer",
+                "React Developer",
+                "Typescript Developer",
+              ],
+              autoStart: true,
+              loop: true,
+            }}
+          />
+        </h3>
       </BackgroundImage>
     </HomeLayout>
   )
