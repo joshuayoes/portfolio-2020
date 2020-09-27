@@ -1,9 +1,9 @@
 module.exports = {
   siteMetadata: {
-    title: `Blog and Portfolio`,
+    title: `Joshua Yoes`,
     author: `Joshua Yoes`,
     description: `My personal blog and portfolio.`,
-    siteUrl: `https://gatsby-starter-blog-demo.netlify.com/`,
+    siteUrl: `https://joshuayoes.com/`,
     social: {
       twitter: `joshuayoes`,
     },
@@ -56,13 +56,13 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `Gatsby Starter Blog`,
-        short_name: `GatsbyJS`,
+        name: `Joshua Yoes`,
+        short_name: `Josh Yoes`,
         start_url: `/`,
         background_color: `#ffffff`,
         theme_color: `#663399`,
         display: `minimal-ui`,
-        icon: `content/assets/gatsby-icon.png`,
+        icon: `content/assets/favicon.png`,
       },
     },
     `gatsby-plugin-offline`,
