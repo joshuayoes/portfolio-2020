@@ -1,26 +1,25 @@
 import React from "react"
-import { Link, graphql } from "gatsby"
+import { Link, graphql, PageProps } from "gatsby"
 
 import Bio from "../components/bio"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
-import { rhythm, scale } from "../utils/typography"
+import { rhythm } from "../utils/typography"
+import { ProjectBySlugQuery, SitePageContext } from "../../graphql-types"
 
-interface Props {
-  data: {
-    markdownRemark: any
-    site: {
-      siteMetadata: {
-        title: string
-      }
-    }
-  }
-  pageContext: any
-}
-
-const ProjectTemplate = ({ data, pageContext }: Props) => {
+const ProjectTemplate: React.FC<PageProps<
+  ProjectBySlugQuery,
+  SitePageContext
+>> = ({ data, pageContext }) => {
   const post = data.markdownRemark
   const { previous, next } = pageContext
+
+  if (!post?.frontmatter?.title)
+    throw Error("post.frontmatter.title is undefined")
+  if (!post?.excerpt) throw Error("post.exceprt is undefined")
+  if (!post?.html) throw Error("post.html is undefined")
+  if (!next?.fields?.slug) throw Error(`next.fields.slug is undefined`)
+  if (!previous?.fields?.slug) throw Error(`previous.fields.slug is undefined`)
 
   return (
     <Layout>
@@ -55,15 +54,15 @@ const ProjectTemplate = ({ data, pageContext }: Props) => {
       >
         <li>
           {previous && (
-            <Link to={previous.fields.slug} rel="prev">
-              ← {previous.frontmatter.title}
+            <Link to={previous.fields?.slug} rel="prev">
+              ← {previous.frontmatter?.title}
             </Link>
           )}
         </li>
         <li>
           {next && (
-            <Link to={next.fields.slug} rel="next">
-              {next.frontmatter.title} →
+            <Link to={next.fields?.slug} rel="next">
+              {next.frontmatter?.title} →
             </Link>
           )}
         </li>
@@ -74,7 +73,7 @@ const ProjectTemplate = ({ data, pageContext }: Props) => {
 
 export default ProjectTemplate
 
-export const pageQuery = graphql`
+export const query = graphql`
   query ProjectBySlug($slug: String!) {
     site {
       siteMetadata {
