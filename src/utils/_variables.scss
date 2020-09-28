@@ -45,3 +45,21 @@ $dark: rgb(51, 51, 51);
     rgba(0, 0, 0, 0) 2px
   );
 }
+
+@mixin styled-heading {
+  letter-spacing: 2px;
+  position: relative;
+  color: $primary;
+  margin-left: 40px;
+
+  &::before {
+    position: absolute;
+    width: 30px;
+    left: -40px;
+    content: "";
+    display: block;
+    height: 2px;
+    background: $primary;
+    top: 16px;
+  }
+}

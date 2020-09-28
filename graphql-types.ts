@@ -3129,7 +3129,7 @@ export type BlogPageQuery = { site?: Maybe<{ siteMetadata?: Maybe<Pick<SiteSiteM
 export type HomePageQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type HomePageQuery = { hero?: Maybe<{ childImageSharp?: Maybe<{ fluid?: Maybe<Pick<ImageSharpFluid, 'aspectRatio'>> }> }>, allMarkdownRemark: { edges: Array<{ node: (
+export type HomePageQuery = { hero?: Maybe<{ childImageSharp?: Maybe<{ fluid?: Maybe<GatsbyImageSharpFluidFragment> }> }>, allMarkdownRemark: { edges: Array<{ node: (
         Pick<MarkdownRemark, 'excerpt'>
         & { fields?: Maybe<Pick<MarkdownRemarkFields, 'slug'>>, frontmatter?: Maybe<(
           Pick<MarkdownRemarkFrontmatter, 'title' | 'description'>
