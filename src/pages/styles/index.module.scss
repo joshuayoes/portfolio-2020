@@ -16,11 +16,11 @@
 
   @include breakpoint(md) {
     justify-content: left;
-    padding: 30px;
+    padding: 20px;
   }
 
   @include breakpoint(lg) {
-    grid-template-columns: 1fr 1200px 1fr;
+    grid-template-columns: 1fr minmax(auto, 1200px) 1fr;
 
     > * {
       grid-column: 2;

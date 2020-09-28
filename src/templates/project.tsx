@@ -21,7 +21,6 @@ interface Props {
 const ProjectTemplate = ({ data, pageContext }: Props) => {
   const post = data.markdownRemark
   const { previous, next } = pageContext
-  console.log({ data, pageContext })
 
   return (
     <Layout>

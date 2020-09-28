@@ -732,6 +732,7 @@ export type FileFieldsEnum =
   | 'childMarkdownRemark___frontmatter___thumbnail___publicURL'
   | 'childMarkdownRemark___frontmatter___thumbnail___id'
   | 'childMarkdownRemark___frontmatter___thumbnail___children'
+  | 'childMarkdownRemark___frontmatter___category'
   | 'childMarkdownRemark___excerpt'
   | 'childMarkdownRemark___rawMarkdownBody'
   | 'childMarkdownRemark___fileAbsolutePath'
@@ -1565,6 +1566,7 @@ export type MarkdownRemarkFieldsEnum =
   | 'frontmatter___thumbnail___childMarkdownRemark___timeToRead'
   | 'frontmatter___thumbnail___childMarkdownRemark___tableOfContents'
   | 'frontmatter___thumbnail___childMarkdownRemark___children'
+  | 'frontmatter___category'
   | 'excerpt'
   | 'rawMarkdownBody'
   | 'fileAbsolutePath'
@@ -1695,6 +1697,7 @@ export type MarkdownRemarkFrontmatter = {
   date?: Maybe<Scalars['Date']>;
   description?: Maybe<Scalars['String']>;
   thumbnail?: Maybe<File>;
+  category?: Maybe<Scalars['String']>;
 };
 
 
@@ -1710,6 +1713,7 @@ export type MarkdownRemarkFrontmatterFilterInput = {
   date?: Maybe<DateQueryOperatorInput>;
   description?: Maybe<StringQueryOperatorInput>;
   thumbnail?: Maybe<FileFilterInput>;
+  category?: Maybe<StringQueryOperatorInput>;
 };
 
 export type MarkdownRemarkGroupConnection = {
@@ -3129,13 +3133,10 @@ export type BlogPageQuery = { site?: Maybe<{ siteMetadata?: Maybe<Pick<SiteSiteM
 export type HomePageQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type HomePageQuery = { hero?: Maybe<{ childImageSharp?: Maybe<{ fluid?: Maybe<GatsbyImageSharpFluidFragment> }> }>, allMarkdownRemark: { edges: Array<{ node: (
-        Pick<MarkdownRemark, 'excerpt'>
-        & { fields?: Maybe<Pick<MarkdownRemarkFields, 'slug'>>, frontmatter?: Maybe<(
-          Pick<MarkdownRemarkFrontmatter, 'title' | 'description'>
+export type HomePageQuery = { hero?: Maybe<{ childImageSharp?: Maybe<{ fluid?: Maybe<GatsbyImageSharpFluidFragment> }> }>, allMarkdownRemark: { edges: Array<{ node: { fields?: Maybe<Pick<MarkdownRemarkFields, 'slug'>>, frontmatter?: Maybe<(
+          Pick<MarkdownRemarkFrontmatter, 'title' | 'category'>
           & { thumbnail?: Maybe<{ childImageSharp?: Maybe<{ fluid?: Maybe<GatsbyImageSharpFluidFragment> }> }> }
-        )> }
-      ) }> } };
+        )> } }> } };
 
 export type BlogPostBySlugQueryVariables = Exact<{
   slug: Scalars['String'];

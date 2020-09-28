@@ -6,7 +6,7 @@ import style from "./styles/index.module.scss"
 import HomeLayout from "../components/HomeLayout"
 import { scale } from "../utils/typography"
 import Typewriter from "typewriter-effect"
-import Img, { FluidObject } from "gatsby-image"
+import { FluidObject } from "gatsby-image"
 import ProjectCard from "../components/ProjectCard"
 
 const HomePage: React.FC<PageProps<HomePageQuery>> = ({ data }) => {
@@ -42,7 +42,11 @@ const HomePage: React.FC<PageProps<HomePageQuery>> = ({ data }) => {
           <div>
             {projects.map(({ node }) => (
               <ProjectCard
-                key={node.excerpt}
+                key={node.fields?.slug}
+                alt={node.frontmatter?.title!}
+                to={node.fields?.slug!}
+                name={node.frontmatter?.title!}
+                type={node.frontmatter?.category!}
                 fluid={
                   node.frontmatter?.thumbnail?.childImageSharp
                     ?.fluid as FluidObject
@@ -73,13 +77,12 @@ export const query = graphql`
     ) {
       edges {
         node {
-          excerpt
           fields {
             slug
           }
           frontmatter {
             title
-            description
+            category
             thumbnail {
               childImageSharp {
                 fluid(quality: 90, maxWidth: 600) {
