@@ -6,9 +6,11 @@ import style from "./styles/index.module.scss"
 import HomeLayout from "../components/HomeLayout"
 import { scale } from "../utils/typography"
 import Typewriter from "typewriter-effect"
+import Img, { FluidObject } from "gatsby-image"
 
 const HomePage: React.FC<PageProps<HomePageQuery>> = ({ data }) => {
   const hero = data?.hero?.childImageSharp?.fluid
+  const projects = data?.allMarkdownRemark?.edges
 
   return (
     <HomeLayout>
@@ -32,6 +34,20 @@ const HomePage: React.FC<PageProps<HomePageQuery>> = ({ data }) => {
           />
         </h3>
       </BackgroundImage>
+      <section>
+        <div>
+          <h4>01</h4>
+          <h1>My Projects</h1>
+          {projects.map(({ node }) => (
+            <Img
+              fluid={
+                node.frontmatter?.thumbnail?.childImageSharp
+                  ?.fluid as FluidObject
+              }
+            />
+          ))}
+        </div>
+      </section>
     </HomeLayout>
   )
 }
@@ -43,7 +59,31 @@ export const query = graphql`
     hero: file(relativePath: { eq: "home-background.jpg" }) {
       childImageSharp {
         fluid(quality: 90, maxWidth: 1920) {
-          ...GatsbyImageSharpFluid
+          aspectRatio
+        }
+      }
+    }
+    allMarkdownRemark(
+      sort: { fields: [frontmatter___date], order: DESC }
+      filter: { fileAbsolutePath: { regex: "/projects/" } }
+    ) {
+      edges {
+        node {
+          excerpt
+          fields {
+            slug
+          }
+          frontmatter {
+            title
+            description
+            thumbnail {
+              childImageSharp {
+                fluid {
+                  ...GatsbyImageSharpFluid
+                }
+              }
+            }
+          }
         }
       }
     }

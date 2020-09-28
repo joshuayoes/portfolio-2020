@@ -1,32 +1,27 @@
-import React from "react";
-import { Link, graphql } from "gatsby";
+import React from "react"
+import { Link, graphql, PageProps } from "gatsby"
 
-import Bio from "../components/bio";
-import Layout from "../components/layout";
-import SEO from "../components/seo";
-import { rhythm } from "../utils/typography";
+import Bio from "../components/bio"
+import Layout from "../components/layout"
+import SEO from "../components/seo"
+import { rhythm } from "../utils/typography"
+import { BlogPageQuery } from "../../graphql-types"
 
-interface Props {
-  data: {
-    allMarkdownRemark: any;
-    site: {
-      siteMetadata: {
-        title: string;
-      };
-    };
-  };
-}
-
-const BlogIndex = ({ data }: Props) => {
-  const siteTitle = data.site.siteMetadata.title;
-  const posts = data.allMarkdownRemark.edges;
+const BlogIndex: React.FC<PageProps<BlogPageQuery>> = ({ data }) => {
+  const posts = data.allMarkdownRemark.edges
 
   return (
     <Layout>
       <SEO title="All posts" />
       <Bio />
-      {posts.map(({ node }: { node: any }) => {
-        const title = node.frontmatter.title || node.fields.slug;
+      {posts.map(({ node }) => {
+        if (!node.frontmatter?.description)
+          throw Error("node.frontmatter is undefined")
+        if (!node.fields) throw Error("node.fields is undefined")
+        if (!node.fields.slug) throw Error("node.fields.slug is undefined")
+        if (!node.excerpt) throw Error("node.exceprt is undefined")
+
+        const title = node.frontmatter.title || node.fields.slug
         return (
           <div key={node.fields.slug}>
             <h3
@@ -45,22 +40,25 @@ const BlogIndex = ({ data }: Props) => {
               }}
             />
           </div>
-        );
+        )
       })}
     </Layout>
-  );
-};
+  )
+}
 
-export default BlogIndex;
+export default BlogIndex
 
-export const pageQuery = graphql`
-  query {
+export const query = graphql`
+  query BlogPage {
     site {
       siteMetadata {
         title
       }
     }
-    allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }, filter: {fileAbsolutePath: {regex: "/blog/"}}) {
+    allMarkdownRemark(
+      sort: { fields: [frontmatter___date], order: DESC }
+      filter: { fileAbsolutePath: { regex: "/blog/" } }
+    ) {
       edges {
         node {
           excerpt
@@ -76,4 +74,4 @@ export const pageQuery = graphql`
       }
     }
   }
-`;
+`
