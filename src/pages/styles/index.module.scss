@@ -28,18 +28,29 @@
   }
 }
 
-.projects {
+@mixin section-layout {
   padding: 20px;
 
   // content
   > div {
-    max-width: 1200px;
+    max-width: $xl;
     margin: 20px auto;
+
+    > h1 {
+      margin: 1em 0;
+    }
 
     > h3 {
       @include styled-heading;
     }
+  }
+}
 
+.projects {
+  @include section-layout;
+
+  // content
+  > div {
     // ProjectCard
     > div {
       display: grid;
@@ -51,6 +62,98 @@
 
       @include breakpoint(lg) {
         grid-template-columns: 1fr 1fr 1fr;
+      }
+    }
+  }
+}
+
+.blog {
+  @include section-layout;
+
+  ul {
+    padding-left: 0;
+    list-style: none;
+    position: relative;
+
+    &:before {
+      background-color: black;
+      content: "";
+      margin-left: -1px;
+      position: absolute;
+      top: 0;
+      width: 2px;
+      height: 100%;
+
+      @include breakpoint(md) {
+        left: 2em;
+      }
+    }
+
+    > li {
+      position: relative;
+
+      > div {
+        display: grid;
+        gap: 20px;
+
+        position: relative;
+        top: -1.875em;
+        width: 90%;
+        left: 2em;
+        padding: 2em 0;
+
+        @include breakpoint(md) {
+          padding: 2em;
+          left: 4em;
+        }
+
+        > h3,
+        > p,
+        > h5 {
+          padding: 0;
+          margin: 0;
+        }
+
+        > a {
+          width: fit-content;
+        }
+
+        &:hover > h5 {
+          box-shadow: inset 40em 0 0 0 $primary;
+        }
+
+        > h5 {
+          display: inline-block;
+          max-width: 200px;
+          width: fit-content;
+          color: $light;
+          background-color: $dark;
+          box-shadow: inset 0 0 0 0em $primary;
+          padding: 0.4em 1em 0.5em 1em;
+          transition: box-shadow 0.5s ease-in 0.1s;
+        }
+      }
+
+      > label {
+        transition: transform 0.2s ease-in;
+        transform: rotate(45deg);
+        background-color: $primary;
+        outline: 10px solid $light;
+        display: block;
+        margin: 0.5em 0.5em 0.5em -0.5em;
+        position: absolute;
+        top: 0;
+        width: 1em;
+        height: 1em;
+
+        @include breakpoint(md) {
+          left: 2em;
+        }
+      }
+
+      &:hover > label {
+        transform: rotate(-45deg);
+        background-color: $primary;
       }
     }
   }

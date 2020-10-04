@@ -1,17 +1,18 @@
-import React from "react"
-import { graphql, PageProps } from "gatsby"
-import { HomePageQuery } from "../../graphql-types"
-import BackgroundImage, { IFluidObject } from "gatsby-background-image"
-import style from "./styles/index.module.scss"
-import HomeLayout from "../components/HomeLayout"
-import { scale } from "../utils/typography"
-import Typewriter from "typewriter-effect"
-import { FluidObject } from "gatsby-image"
-import ProjectCard from "../components/ProjectCard"
+import React from "react";
+import { graphql, Link, PageProps } from "gatsby";
+import { HomePageQuery } from "../../graphql-types";
+import BackgroundImage, { IFluidObject } from "gatsby-background-image";
+import style from "./styles/index.module.scss";
+import HomeLayout from "../components/HomeLayout";
+import { scale } from "../utils/typography";
+import Typewriter from "typewriter-effect";
+import { FluidObject } from "gatsby-image";
+import ProjectCard from "../components/ProjectCard";
 
 const HomePage: React.FC<PageProps<HomePageQuery>> = ({ data }) => {
-  const hero = data?.hero?.childImageSharp?.fluid
-  const projects = data?.allMarkdownRemark?.edges
+  const hero = data?.hero?.childImageSharp?.fluid;
+  const projects = data?.projects?.edges;
+  const blogPosts = data?.blogPosts?.edges;
 
   return (
     <HomeLayout>
@@ -40,52 +41,73 @@ const HomePage: React.FC<PageProps<HomePageQuery>> = ({ data }) => {
           <h3>01</h3>
           <h1>My Projects</h1>
           <div>
-            {projects.map(({ node }) => (
+            {projects.map(({ node: { fields, frontmatter } }) => (
               <ProjectCard
-                key={node.fields?.slug}
-                alt={node.frontmatter?.title!}
-                to={node.fields?.slug!}
-                name={node.frontmatter?.title!}
-                type={node.frontmatter?.category!}
-                fluid={
-                  node.frontmatter?.thumbnail?.childImageSharp
-                    ?.fluid as FluidObject
-                }
+                key={frontmatter?.title! + fields?.slug}
+                alt={frontmatter?.title!}
+                to={fields?.slug!}
+                name={frontmatter?.title!}
+                type={frontmatter?.category!}
+                fluid={frontmatter?.thumbnail?.childImageSharp
+                  ?.fluid as FluidObject}
               />
             ))}
           </div>
         </div>
       </section>
+      <section className={style.blog}>
+        <div>
+          <h3>02</h3>
+          <h1>My Articles</h1>
+          <ul>
+            {blogPosts.map((
+              { node: { excerpt, fields, frontmatter } },
+            ) => (
+              <li key={frontmatter?.title! + fields?.slug}>
+                <label />
+                <div>
+                  <h5>{frontmatter?.date}</h5>
+                  <h3>
+                    <Link to={fields?.slug ?? "/"}>
+                      {frontmatter?.title}
+                    </Link>
+                  </h3>
+                  <p>{excerpt}</p>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
     </HomeLayout>
-  )
-}
+  );
+};
 
-export default HomePage
+export default HomePage;
 
 export const query = graphql`
   query HomePage {
-    hero: file(relativePath: { eq: "home-background.jpg" }) {
+    hero: file(relativePath: {eq: "home-background.jpg"}) {
       childImageSharp {
         fluid(quality: 90, maxWidth: 1920) {
           ...GatsbyImageSharpFluid
         }
       }
     }
-    allMarkdownRemark(
-      sort: { fields: [frontmatter___date], order: DESC }
-      filter: { fileAbsolutePath: { regex: "/projects/" } }
-    ) {
+    projects: allMarkdownRemark(sort: {fields: [frontmatter___date], order: DESC}, filter: {fileAbsolutePath: {regex: "/projects/"}}) {
       edges {
         node {
+          excerpt
           fields {
             slug
           }
           frontmatter {
             title
+            description
             category
             thumbnail {
               childImageSharp {
-                fluid(quality: 90, maxWidth: 600) {
+                fluid {
                   ...GatsbyImageSharpFluid
                 }
               }
@@ -94,5 +116,19 @@ export const query = graphql`
         }
       }
     }
+    blogPosts: allMarkdownRemark(sort: {fields: [frontmatter___date], order: DESC}, filter: {fileAbsolutePath: {regex: "/blog/"}}, limit: 5) {
+      edges {
+        node {
+          excerpt
+          fields {
+            slug
+          }
+          frontmatter {
+            date(formatString: "MMMM DD, YYYY")
+            title
+          }
+        }
+      }
+    }
   }
-`
+`;
