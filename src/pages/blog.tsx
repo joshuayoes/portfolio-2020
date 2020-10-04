@@ -1,27 +1,25 @@
-import React from "react"
-import { Link, graphql, PageProps } from "gatsby"
+import React from "react";
+import { Link, graphql, PageProps } from "gatsby";
 
-import Bio from "../components/bio"
-import Layout from "../components/layout"
-import SEO from "../components/seo"
-import { rhythm } from "../utils/typography"
-import { BlogPageQuery } from "../../graphql-types"
+import Bio from "../components/bio";
+import Layout from "../components/layout";
+import SEO from "../components/seo";
+import { rhythm } from "../utils/typography";
+import { BlogPageQuery } from "../../graphql-types";
 
 const BlogIndex: React.FC<PageProps<BlogPageQuery>> = ({ data }) => {
-  const posts = data.allMarkdownRemark.edges
+  const posts = data.allMarkdownRemark.edges;
 
   return (
     <Layout>
       <SEO title="All posts" />
       <Bio />
       {posts.map(({ node }) => {
-        if (!node.frontmatter?.description)
-          throw Error("node.frontmatter is undefined")
-        if (!node.fields) throw Error("node.fields is undefined")
-        if (!node.fields.slug) throw Error("node.fields.slug is undefined")
-        if (!node.excerpt) throw Error("node.exceprt is undefined")
+        if (!node.fields) throw Error("node.fields is undefined");
+        if (!node.fields.slug) throw Error("node.fields.slug is undefined");
+        if (!node.excerpt) throw Error("node.exceprt is undefined");
 
-        const title = node.frontmatter.title || node.fields.slug
+        const title = node.frontmatter?.title || node.fields.slug;
         return (
           <div key={node.fields.slug}>
             <h3
@@ -33,20 +31,20 @@ const BlogIndex: React.FC<PageProps<BlogPageQuery>> = ({ data }) => {
                 {title}
               </Link>
             </h3>
-            <small>{node.frontmatter.date}</small>
+            <small>{node.frontmatter?.date}</small>
             <p
               dangerouslySetInnerHTML={{
-                __html: node.frontmatter.description || node.excerpt,
+                __html: node.frontmatter?.description || node.excerpt,
               }}
             />
           </div>
-        )
+        );
       })}
     </Layout>
-  )
-}
+  );
+};
 
-export default BlogIndex
+export default BlogIndex;
 
 export const query = graphql`
   query BlogPage {
@@ -74,4 +72,4 @@ export const query = graphql`
       }
     }
   }
-`
+`;
