@@ -1,18 +1,12 @@
-/**
- * Bio component that queries for data
- * with Gatsby's useStaticQuery component
- *
- * See: https://www.gatsbyjs.org/docs/use-static-query/
- */
-
 import React from "react"
 import { useStaticQuery, graphql } from "gatsby"
-import Image from "gatsby-image"
+import Image, { FixedObject } from "gatsby-image"
 
 import { rhythm } from "../utils/typography"
+import { BioQueryQuery } from "../../graphql-types"
 
-const Bio = () => {
-  const data = useStaticQuery(graphql`
+const Bio: React.FC = () => {
+  const data = useStaticQuery<BioQueryQuery>(graphql`
     query BioQuery {
       avatar: file(absolutePath: { regex: "/profile-pic.jpg/" }) {
         childImageSharp {
@@ -32,7 +26,9 @@ const Bio = () => {
     }
   `)
 
-  const { author, social } = data.site.siteMetadata
+  const author = data?.site?.siteMetadata?.author!;
+  const social = data?.site?.siteMetadata?.social!;
+
   return (
     <div
       style={{
@@ -41,7 +37,7 @@ const Bio = () => {
       }}
     >
       <Image
-        fixed={data.avatar.childImageSharp.fixed}
+        fixed={data?.avatar?.childImageSharp?.fixed as FixedObject}
         alt={author}
         style={{
           marginRight: rhythm(1 / 2),
@@ -54,11 +50,11 @@ const Bio = () => {
         }}
       />
       <p>
-        <strong>{author}</strong> is a Javascript developer that is
-        passionate about Typescript, Node, and test driven development. 
+        <strong>{author}</strong> is a Javascript developer that is passionate
+        about Typescript, empowering developers, and test driven development.
         {` `}
         <a href={`https://twitter.com/${social.twitter}`}>
-          I also tweet about SW Washington politics and video games.
+          I also tweet about SW Washington politics and Nintendo games.
         </a>
       </p>
     </div>

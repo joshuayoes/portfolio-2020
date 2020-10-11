@@ -1,4 +1,4 @@
-import Typography, { TypographyOptions } from "typography";
+import Typography from "typography";
 import TwinPeaks from "typography-theme-twin-peaks";
 import theme from "../utils/_variables.scss";
 
@@ -7,7 +7,7 @@ const underline = (color: string) =>
   color +
   " 1px, " + color + " 2px, rgba(0, 0, 0, 0) 2px)";
 
-TwinPeaks.overrideThemeStyles = () => ({
+TwinPeaks.overrideThemeStyles = ({ rhythm }) => ({
   a: {
     color: theme.dark,
     backgroundImage: underline(theme.dark),
@@ -17,6 +17,9 @@ TwinPeaks.overrideThemeStyles = () => ({
   "a:hover,a:active": {
     color: theme.primary,
     backgroundImage: underline(theme.primary),
+  },
+  blockquote: {
+    borderLeft: `${rhythm(3 / 16)} solid ${theme.dark}`,
   },
 });
 
