@@ -13293,7 +13293,7 @@ react-hot-loader@^4.12.21:
     shallowequal "^1.1.0"
     source-map "^0.7.3"
 
-react-icons@^3.0.1:
+react-icons@^3.0.1, react-icons@^3.11.0:
   version "3.11.0"
   resolved "https://registry.yarnpkg.com/react-icons/-/react-icons-3.11.0.tgz#2ca2903dfab8268ca18ebd8cc2e879921ec3b254"
   integrity sha512-JRgiI/vdF6uyBgyZhVyYJUZAop95Sy4XDe/jmT3R/bKliFWpO/uZBwvSjWEdxwzec7SYbEPNPck0Kff2tUGM2Q==
@@ -15940,16 +15940,6 @@ typedarray@^0.0.6:
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
   integrity sha1-hnrHTjhkGHsdPUfZlqeOxciDB3c=
 
-typeface-merriweather@^0.0.72:
-  version "0.0.72"
-  resolved "https://registry.yarnpkg.com/typeface-merriweather/-/typeface-merriweather-0.0.72.tgz#2b990f5293252052d51d170c82d3892319ff0555"
-  integrity sha512-gO0+fcZ1fTyKUsYY1ltYOOTI6FmBGeEdyIfeQg9NL8aInndk0feiJJVJsKHm/DiyYrnQEezraAQhz/KQoqMGtw==
-
-typeface-montserrat@^0.0.75:
-  version "0.0.75"
-  resolved "https://registry.yarnpkg.com/typeface-montserrat/-/typeface-montserrat-0.0.75.tgz#b796d9c767ab8ed1343271985beb1e44b382b7b3"
-  integrity sha512-8ski20t3hdwu2T85pVfjK4jsDbwW8yWzd+LAKxYEmu+JVLVlB7G2yfmdKZz06pUwYCLVFvHvup+NYYulHDpE+w==
-
 typescript-plugin-css-modules@^2.7.0:
   version "2.7.0"
   resolved "https://registry.yarnpkg.com/typescript-plugin-css-modules/-/typescript-plugin-css-modules-2.7.0.tgz#778a74694296f41aa327110f9b41aa7b57d1ae0a"
@@ -15994,14 +15984,6 @@ typography-theme-twin-peaks@^0.16.19:
   version "0.16.19"
   resolved "https://registry.yarnpkg.com/typography-theme-twin-peaks/-/typography-theme-twin-peaks-0.16.19.tgz#e8444702e3c25b7107a4c6918dd72c664c31405b"
   integrity sha512-F0XsKQU1hNEfzoE9gCJLgbp5Whxv0+Skkp8axCcqCg1AP4MI5WrljjIj8bQOsUA/TjipvCb9wm5FmGR1ZalO8A==
-  dependencies:
-    gray-percentage "^2.0.0"
-    typography-breakpoint-constants "^0.16.19"
-
-typography-theme-wordpress-2016@^0.16.19:
-  version "0.16.19"
-  resolved "https://registry.yarnpkg.com/typography-theme-wordpress-2016/-/typography-theme-wordpress-2016-0.16.19.tgz#de2ecf20fc4f51db9ca2b149a731d31d8ca9c9ab"
-  integrity sha512-J7AWs8mHQyCtAzvhTs1QcAuzv1QoYsue0xw5U430fBxUystWLQba9OphcycFshgDbm6B/k5ge0d4feYp9xOJ2A==
   dependencies:
     gray-percentage "^2.0.0"
     typography-breakpoint-constants "^0.16.19"

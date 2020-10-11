@@ -59,5 +59,15 @@
   > footer {
     text-align: center;
     padding: 20px;
+
+    display: grid;
+    gap: 20px;
+    grid-auto-flow: column;
+    justify-content: center;
+    align-content: center;
+
+    a {
+      background-image: none;
+    }
   }
 }
