@@ -10,6 +10,7 @@ import { FluidObject } from "gatsby-image";
 import ProjectCard from "../components/ProjectCard";
 import useScrollPosition from "@react-hook/window-scroll"
 import cn from "classnames";
+import SEO from "../components/seo";
 
 const HomePage: React.FC<PageProps<HomePageQuery>> = ({ data }) => {
   const hero = data?.hero?.childImageSharp?.fluid;
@@ -21,6 +22,7 @@ const HomePage: React.FC<PageProps<HomePageQuery>> = ({ data }) => {
 
   return (
     <Layout className={cn(style.layout, { [style.top]: isTop })}>
+      <SEO title="Home" />
       <BackgroundImage<"section">
         Tag="section"
         fluid={hero as IFluidObject}
