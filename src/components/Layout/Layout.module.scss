@@ -48,15 +48,16 @@
   }
 }
 
-.main {
-  margin-top: -70px;
-}
+.layout {
+  max-width: 70ch;
+  margin: 0 auto;
 
-.footer {
-  text-align: center;
-  padding: 20px;
-}
+  > main {
+    padding: 20px;
+  }
 
-.top {
-  background: transparent;
+  > footer {
+    text-align: center;
+    padding: 20px;
+  }
 }

@@ -3,19 +3,24 @@ import { graphql, Link, PageProps } from "gatsby";
 import { HomePageQuery } from "../../graphql-types";
 import BackgroundImage, { IFluidObject } from "gatsby-background-image";
 import style from "./styles/index.module.scss";
-import HomeLayout from "../components/HomeLayout";
+import Layout from "../components/Layout";
 import { scale } from "../utils/typography";
 import Typewriter from "typewriter-effect";
 import { FluidObject } from "gatsby-image";
 import ProjectCard from "../components/ProjectCard";
+import useScrollPosition from "@react-hook/window-scroll"
+import cn from "classnames";
 
 const HomePage: React.FC<PageProps<HomePageQuery>> = ({ data }) => {
   const hero = data?.hero?.childImageSharp?.fluid;
   const projects = data?.projects?.edges;
   const blogPosts = data?.blogPosts?.edges;
 
+  const scrollY = useScrollPosition(60)
+  const isTop = scrollY === 0;
+
   return (
-    <HomeLayout>
+    <Layout className={cn(style.layout, { [style.top]: isTop })}>
       <BackgroundImage<"section">
         Tag="section"
         fluid={hero as IFluidObject}
@@ -79,7 +84,7 @@ const HomePage: React.FC<PageProps<HomePageQuery>> = ({ data }) => {
           </ul>
         </div>
       </section>
-    </HomeLayout>
+    </Layout>
   );
 };
 

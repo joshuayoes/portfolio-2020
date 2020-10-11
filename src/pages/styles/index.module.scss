@@ -1,5 +1,19 @@
 @import "../../utils/variables";
 
+.top > header {
+  background: transparent;
+}
+
+.layout {
+  margin: initial;
+  max-width: initial;
+
+  > main {
+    margin-top: -70px;
+    padding: 0;
+  }
+}
+
 .hero {
   min-height: 100vh;
   width: 100vw;

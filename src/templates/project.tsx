@@ -2,10 +2,11 @@ import React from "react";
 import { Link, graphql, PageProps } from "gatsby";
 
 import Bio from "../components/bio";
-import Layout from "../components/layout";
 import SEO from "../components/seo";
 import { rhythm } from "../utils/typography";
 import { ProjectBySlugQuery, SitePageContext } from "../../graphql-types";
+import style from './styles/blog-post.module.scss';
+import Layout from "../components/Layout";
 
 const ProjectTemplate: React.FC<
   PageProps<
@@ -28,7 +29,7 @@ const ProjectTemplate: React.FC<
   if (!post?.html) throw Error("post.html is undefined");
 
   return (
-    <Layout>
+    <Layout className={style.layout}>
       <SEO
         title={post.frontmatter.title}
         description={post.frontmatter.description || post.excerpt}

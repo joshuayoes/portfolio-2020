@@ -2,7 +2,7 @@ import React from "react";
 import { Link, graphql, PageProps } from "gatsby";
 
 import Bio from "../components/bio";
-import Layout from "../components/layout";
+import Layout from "../components/Layout";
 import SEO from "../components/seo";
 import { rhythm } from "../utils/typography";
 import { BlogPageQuery } from "../../graphql-types";

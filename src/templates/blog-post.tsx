@@ -1,32 +1,22 @@
 import React from "react"
-import { Link, graphql } from "gatsby"
+import { Link, graphql, PageProps } from "gatsby"
 
 import Bio from "../components/bio"
-import Layout from "../components/layout"
 import SEO from "../components/seo"
 import { rhythm, scale } from "../utils/typography"
+import Layout from "../components/Layout"
+import style from './styles/blog-post.module.scss';
+import { BlogPostBySlugQuery, SitePageContext } from "../../graphql-types"
 
-interface Props {
-  data: {
-    markdownRemark: any
-    site: {
-      siteMetadata: {
-        title: string
-      }
-    }
-  }
-  pageContext: any
-}
-
-const BlogPostTemplate = ({ data, pageContext }: Props) => {
-  const post = data.markdownRemark
+const BlogPostTemplate: React.FC<PageProps<BlogPostBySlugQuery, SitePageContext>> = ({ data, pageContext }) => {
+  const post = data?.markdownRemark
   const { previous, next } = pageContext
 
   return (
-    <Layout>
+    <Layout className={style.layout}>
       <SEO
-        title={post.frontmatter.title}
-        description={post.frontmatter.description || post.excerpt}
+        title={post?.frontmatter?.title!}
+        description={post?.frontmatter?.description || post?.excerpt!}
       />
       <h1
         style={{
@@ -34,7 +24,7 @@ const BlogPostTemplate = ({ data, pageContext }: Props) => {
           marginBottom: 0,
         }}
       >
-        {post.frontmatter.title}
+        {post?.frontmatter?.title!}
       </h1>
       <p
         style={{
@@ -43,9 +33,9 @@ const BlogPostTemplate = ({ data, pageContext }: Props) => {
           marginBottom: rhythm(1),
         }}
       >
-        {post.frontmatter.date}
+        {post?.frontmatter?.date!}
       </p>
-      <div dangerouslySetInnerHTML={{ __html: post.html }} />
+      <div dangerouslySetInnerHTML={{ __html: post?.html! }} />
       <hr
         style={{
           marginBottom: rhythm(1),
@@ -64,15 +54,15 @@ const BlogPostTemplate = ({ data, pageContext }: Props) => {
       >
         <li>
           {previous && (
-            <Link to={previous.fields.slug} rel="prev">
-              ← {previous.frontmatter.title}
+            <Link to={previous?.fields?.slug!} rel="prev">
+              ← {previous?.frontmatter?.title}
             </Link>
           )}
         </li>
         <li>
           {next && (
-            <Link to={next.fields.slug} rel="next">
-              {next.frontmatter.title} →
+            <Link to={next?.fields?.slug!} rel="next">
+              {next?.frontmatter?.title} →
             </Link>
           )}
         </li>

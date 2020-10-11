@@ -1,0 +1,10 @@
+@import "../../utils/variables";
+
+.layout {
+  margin: 0 auto;
+  max-width: 70ch;
+
+  > main {
+    padding: 20px;
+  }
+}

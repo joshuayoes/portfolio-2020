@@ -54,11 +54,11 @@ const Bio = () => {
         }}
       />
       <p>
-        Written by <strong>{author}</strong> who lives and works in San
-        Francisco building useful things.
+        <strong>{author}</strong> is a Javascript developer that is
+        passionate about Typescript, Node, and test driven development. 
         {` `}
         <a href={`https://twitter.com/${social.twitter}`}>
-          You should follow him on Twitter
+          I also tweet about SW Washington politics and video games.
         </a>
       </p>
     </div>
