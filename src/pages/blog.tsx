@@ -7,10 +7,10 @@ import { BlogPageQuery } from "../../graphql-types";
 import style from './styles/blog.module.scss';
 
 const BlogIndex: React.FC<PageProps<BlogPageQuery>> = ({ data }) => {
-    const blogPosts = data?.blogPosts?.edges;
+  const blogPosts = data?.blogPosts?.edges;
 
   return (
-    <Layout>
+    <Layout className={style.layout}>
       <SEO title="All posts" />
       <section className={style.blog}>
         <div>
