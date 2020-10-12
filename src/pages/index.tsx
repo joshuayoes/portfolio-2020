@@ -67,7 +67,7 @@ const HomePage: React.FC<PageProps<HomePageQuery>> = ({ data }) => {
           <h3>02</h3>
           <h1>My Articles</h1>
           <ul>
-            {blogPosts.map((
+          {blogPosts.map((
               { node: { excerpt, fields, frontmatter } },
             ) => (
               <li key={frontmatter?.title! + fields?.slug}>
