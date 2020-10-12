@@ -4,6 +4,10 @@
   img {
     filter: grayscale(1);
   }
+
+  > a {
+    box-shadow: 5px 5px 16px -3px rgba($dark, 0.4);
+  }
 }
 
 :global {

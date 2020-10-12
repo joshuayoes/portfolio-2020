@@ -2,6 +2,9 @@ import Typography from "typography";
 import TwinPeaks from "typography-theme-twin-peaks";
 import theme from "../utils/_variables.scss";
 
+// Polyfill for 'typography-breakpoint-constants'
+const MOBILE_MEDIA_QUERY = "@media only screen and (max-width:480px)";
+
 const underline = (color: string) =>
   "linear-gradient(to top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0) 1px, " +
   color +
@@ -20,6 +23,11 @@ TwinPeaks.overrideThemeStyles = ({ rhythm }) => ({
   },
   blockquote: {
     borderLeft: `${rhythm(3 / 16)} solid ${theme.dark}`,
+  },
+  [MOBILE_MEDIA_QUERY]: {
+    blockquote: {
+      borderLeft: `${rhythm(3 / 16)} solid ${theme.dark}`,
+    },
   },
 });
 

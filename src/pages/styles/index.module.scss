@@ -5,12 +5,10 @@
 }
 
 .layout {
-  margin: initial;
-  max-width: initial;
-
   > main {
     margin-top: -70px;
     padding: 0;
+    max-width: initial;
   }
 }
 
