@@ -1,0 +1,36 @@
+@import "../../utils/variables";
+
+.layout {
+  > header {
+    box-shadow: 5px 5px 16px 2px rgba($dark, 0.1);
+  }
+
+  > main {
+    padding: 0;
+    max-width: initial;
+
+    > article {
+      margin: -50px auto 20px;
+      max-width: 70ch;
+      padding: 20px;
+      position: relative;
+      z-index: 1;
+
+      box-shadow: 0 25px 75px rgba($dark, 0.1);
+      border-radius: 17px;
+      background-color: $light;
+
+      > ul {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        list-style: none;
+        padding: 0;
+      }
+    }
+  }
+}
+
+.image {
+  max-height: 200px;
+}

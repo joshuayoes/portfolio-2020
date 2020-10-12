@@ -1,12 +1,12 @@
 import React from "react";
 import { Link, graphql, PageProps } from "gatsby";
 
-import Bio from "../components/bio";
 import SEO from "../components/seo";
 import { rhythm } from "../utils/typography";
 import { ProjectBySlugQuery, SitePageContext } from "../../graphql-types";
-import style from './styles/blog-post.module.scss';
+import style from './styles/project.module.scss';
 import Layout from "../components/Layout";
+import Image, { FluidObject } from "gatsby-image";
 
 const ProjectTemplate: React.FC<
   PageProps<
@@ -14,7 +14,7 @@ const ProjectTemplate: React.FC<
     SitePageContext
   >
 > = ({ data, pageContext }) => {
-  const post = data.markdownRemark;
+  const project = data.markdownRemark;
   const { previous, next } = pageContext;
 
   const nextSlug = next?.fields?.slug;
@@ -22,63 +22,59 @@ const ProjectTemplate: React.FC<
   const previousSlug = previous?.fields?.slug;
   const previousTitle = previous?.frontmatter?.title;
 
-  if (!post?.frontmatter?.title) {
+  if (!project?.frontmatter?.title) {
     throw Error("post.frontmatter.title is undefined");
   }
-  if (!post?.excerpt) throw Error("post.exceprt is undefined");
-  if (!post?.html) throw Error("post.html is undefined");
+  if (!project?.excerpt) throw Error("post.exceprt is undefined");
+  if (!project?.html) throw Error("post.html is undefined");
 
   return (
     <Layout className={style.layout}>
       <SEO
-        title={post.frontmatter.title}
-        description={post.frontmatter.description || post.excerpt}
+        title={project.frontmatter.title}
+        description={project.frontmatter.description || project.excerpt}
       />
-      <h1
-        style={{
-          marginTop: rhythm(1),
-          marginBottom: rhythm(1),
-        }}
-      >
-        {post.frontmatter.title}
-      </h1>
-      <div dangerouslySetInnerHTML={{ __html: post.html }} />
-      <hr
-        style={{
-          marginBottom: rhythm(1),
-        }}
-      />
+      <Image className={style.image} fluid={project.frontmatter.thumbnail?.childImageSharp?.fluid as FluidObject} />
+      <article>
+        <h1
+          style={{
+            marginTop: rhythm(1),
+            marginBottom: rhythm(1),
+          }}
+        >
+          {project.frontmatter.title}
+        </h1>
+        <div dangerouslySetInnerHTML={{ __html: project.html }} />
+        <hr
+          style={{
+            marginBottom: rhythm(1),
+          }}
+        />
 
-      <ul
-        style={{
-          display: `flex`,
-          flexWrap: `wrap`,
-          justifyContent: `space-between`,
-          listStyle: `none`,
-          padding: 0,
-        }}
-      >
-        <li>
-          {previousSlug && (
-            <Link to={previousSlug} rel="prev">
-              ← {previousTitle}
-            </Link>
-          )}
-        </li>
-        <li>
-          {nextSlug && nextTitle && (
-            <Link to={nextSlug} rel="next">
-              {nextTitle} →
-            </Link>
-          )}
-        </li>
-      </ul>
+        <ul
+        >
+          <li>
+            {previousSlug && (
+              <Link to={previousSlug} rel="prev">
+                ← {previousTitle}
+              </Link>
+            )}
+          </li>
+          <li>
+            {nextSlug && nextTitle && (
+              <Link to={nextSlug} rel="next">
+                {nextTitle} →
+              </Link>
+            )}
+          </li>
+        </ul>
+      </article>
     </Layout>
   );
 };
 
 export default ProjectTemplate;
-
+ 
 export const query = graphql`
   query ProjectBySlug($slug: String!) {
     site {
@@ -94,6 +90,13 @@ export const query = graphql`
       frontmatter {
         title
         description
+        thumbnail {
+          childImageSharp {
+            fluid(quality: 90, maxWidth: 1920) {
+              ...GatsbyImageSharpFluid
+            }
+          }
+        }
       }
     }
   }

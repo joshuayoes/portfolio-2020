@@ -3156,7 +3156,10 @@ export type ProjectBySlugQueryVariables = Exact<{
 
 export type ProjectBySlugQuery = { site?: Maybe<{ siteMetadata?: Maybe<Pick<SiteSiteMetadata, 'title' | 'author'>> }>, markdownRemark?: Maybe<(
     Pick<MarkdownRemark, 'id' | 'excerpt' | 'html'>
-    & { frontmatter?: Maybe<Pick<MarkdownRemarkFrontmatter, 'title' | 'description'>> }
+    & { frontmatter?: Maybe<(
+      Pick<MarkdownRemarkFrontmatter, 'title' | 'description'>
+      & { thumbnail?: Maybe<{ childImageSharp?: Maybe<{ fluid?: Maybe<GatsbyImageSharpFluidFragment> }> }> }
+    )> }
   )> };
 
 export type GatsbyImageSharpFixedFragment = Pick<ImageSharpFixed, 'base64' | 'width' | 'height' | 'src' | 'srcSet'>;
