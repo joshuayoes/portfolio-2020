@@ -41,7 +41,6 @@ const BlogPostTemplate: React.FC<PageProps<BlogPostBySlugQuery, SitePageContext>
           marginBottom: rhythm(1),
         }}
       />
-      <Bio />
 
       <ul
         style={{

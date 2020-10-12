@@ -37,7 +37,7 @@ const ProjectTemplate: React.FC<
       <h1
         style={{
           marginTop: rhythm(1),
-          marginBottom: 0,
+          marginBottom: rhythm(1),
         }}
       >
         {post.frontmatter.title}
@@ -48,7 +48,6 @@ const ProjectTemplate: React.FC<
           marginBottom: rhythm(1),
         }}
       />
-      <Bio />
 
       <ul
         style={{
