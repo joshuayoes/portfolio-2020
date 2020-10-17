@@ -12,13 +12,24 @@
     > article {
       margin: -50px auto 20px;
       max-width: 70ch;
-      padding: 20px;
+      padding: 20px 40px;
       position: relative;
       z-index: 1;
 
       box-shadow: 0 25px 75px rgba($dark, 0.1);
       border-radius: 17px;
       background-color: $light;
+
+      > h4 > a {
+        display: inline-block;
+        background-image: none;
+
+        display: inline-grid;
+        grid-auto-flow: column;
+        gap: 10px;
+        justify-content: center;
+        align-items: center;
+      }
 
       > ul {
         display: flex;

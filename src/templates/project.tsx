@@ -8,6 +8,7 @@ import style from './styles/project.module.scss';
 import Layout from "../components/Layout";
 import Image, { FluidObject } from "gatsby-image";
 import AniLink from "gatsby-plugin-transition-link/AniLink";
+import { BiLink } from 'react-icons/bi';
 
 const ProjectTemplate: React.FC<
   PageProps<
@@ -26,7 +27,7 @@ const ProjectTemplate: React.FC<
   if (!project?.frontmatter?.title) {
     throw Error("post.frontmatter.title is undefined");
   }
-  if (!project?.excerpt) throw Error("post.exceprt is undefined");
+  if (!project?.excerpt) throw Error("post.excerpt is undefined");
   if (!project?.html) throw Error("post.html is undefined");
 
   return (
@@ -40,11 +41,17 @@ const ProjectTemplate: React.FC<
         <h1
           style={{
             marginTop: rhythm(1),
-            marginBottom: rhythm(1),
           }}
         >
           {project.frontmatter.title}
         </h1>
+        {project.frontmatter?.project_link && <h4
+          style={{ marginTop: rhythm(1 / 2), marginBottom: rhythm(1 / 2) }}>
+            <a href={project.frontmatter.project_link}>
+            <BiLink size={30} />
+            View Project
+            </a>
+        </h4>}
         <div dangerouslySetInnerHTML={{ __html: project.html }} />
         <hr
           style={{
@@ -91,6 +98,7 @@ export const query = graphql`
       frontmatter {
         title
         description
+        project_link
         thumbnail {
           childImageSharp {
             fluid(quality: 90, maxWidth: 1920) {
