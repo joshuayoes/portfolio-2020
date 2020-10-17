@@ -20,6 +20,12 @@
       border-radius: 17px;
       background-color: $light;
 
+      > div {
+        img {
+          border-radius: 10px;
+        }
+      }
+
       > h4 > a {
         display: inline-block;
         background-image: none;
