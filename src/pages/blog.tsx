@@ -1,10 +1,11 @@
 import React from "react";
-import { Link, graphql, PageProps } from "gatsby";
+import { graphql, PageProps } from "gatsby";
 
 import Layout from "../components/Layout";
 import SEO from "../components/seo";
 import { BlogPageQuery } from "../../graphql-types";
 import style from './styles/blog.module.scss';
+import AniLink from "gatsby-plugin-transition-link/AniLink";
 
 const BlogIndex: React.FC<PageProps<BlogPageQuery>> = ({ data }) => {
   const blogPosts = data?.blogPosts?.edges;
@@ -23,9 +24,9 @@ const BlogIndex: React.FC<PageProps<BlogPageQuery>> = ({ data }) => {
                 <div>
                   <h5>{frontmatter?.date}</h5>
                   <h3>
-                    <Link to={fields?.slug!}>
+                    <AniLink to={fields?.slug!} paintDrip hex={style.primary}>
                       {frontmatter?.title}
-                    </Link>
+                    </AniLink>
                   </h3>
                   <p>{excerpt}</p>
                 </div>

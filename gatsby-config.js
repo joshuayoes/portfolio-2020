@@ -82,7 +82,13 @@ module.exports = {
         pathToConfigModule: `src/utils/typography`,
       },
     },
-    `gatsby-plugin-graphql-codegen`,
+    {
+      resolve: 'gatsby-plugin-graphql-codegen',
+      options: {
+        codegen: true,
+      },
+    },
     `gatsby-plugin-sass`,
+    `gatsby-plugin-transition-link`,
   ],
 }

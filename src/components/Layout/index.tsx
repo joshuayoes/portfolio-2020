@@ -1,8 +1,8 @@
 import React from "react"
-import { Link } from "gatsby"
 import style from "./Layout.module.scss"
 import cn from "classnames"
 import { FaLinkedin, FaGithub, FaTwitter } from 'react-icons/fa';
+import AniLink from "gatsby-plugin-transition-link/AniLink";
 
 interface Props {
   className?: string;
@@ -14,11 +14,11 @@ const Layout: React.FC<Props> = ({ className, children }) => {
       <header className={style.header}>
         <div>
           <h3>
-            <Link to="/">Joshua Yoes</Link>
+            <AniLink to="/" paintDrip hex={style.primary}>Joshua Yoes</AniLink>
           </h3>
           <ul>
             <li>
-              <Link to="/blog">Blog</Link>
+              <AniLink to="/blog" paintDrip hex={style.primary}>Blog</AniLink>
             </li>
           </ul>
         </div>

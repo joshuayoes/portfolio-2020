@@ -1,12 +1,12 @@
 import React from "react"
-import { Link, graphql, PageProps } from "gatsby"
+import { graphql, PageProps } from "gatsby"
 
-import Bio from "../components/bio"
 import SEO from "../components/seo"
 import { rhythm, scale } from "../utils/typography"
 import Layout from "../components/Layout"
 import style from './styles/blog-post.module.scss';
 import { BlogPostBySlugQuery, SitePageContext } from "../../graphql-types"
+import AniLink from "gatsby-plugin-transition-link/AniLink"
 
 const BlogPostTemplate: React.FC<PageProps<BlogPostBySlugQuery, SitePageContext>> = ({ data, pageContext }) => {
   const post = data?.markdownRemark
@@ -54,16 +54,16 @@ const BlogPostTemplate: React.FC<PageProps<BlogPostBySlugQuery, SitePageContext>
         >
           <li>
             {previous && (
-              <Link to={previous?.fields?.slug!} rel="prev">
+              <AniLink to={previous?.fields?.slug!} rel="prev" cover bg={style.primary} direction="left">
                 ← {previous?.frontmatter?.title}
-              </Link>
+              </AniLink>
             )}
           </li>
           <li>
             {next && (
-              <Link to={next?.fields?.slug!} rel="next">
+              <AniLink to={next?.fields?.slug!} rel="next" cover bg={style.primary} direction="right">
                 {next?.frontmatter?.title} →
-              </Link>
+              </AniLink>
             )}
           </li>
         </ul>

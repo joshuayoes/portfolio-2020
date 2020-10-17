@@ -11,6 +11,7 @@ import ProjectCard from "../components/ProjectCard";
 import useScrollPosition from "@react-hook/window-scroll"
 import cn from "classnames";
 import SEO from "../components/seo";
+import AniLink from "gatsby-plugin-transition-link/AniLink";
 
 const HomePage: React.FC<PageProps<HomePageQuery>> = ({ data }) => {
   const hero = data?.hero?.childImageSharp?.fluid;
@@ -75,9 +76,9 @@ const HomePage: React.FC<PageProps<HomePageQuery>> = ({ data }) => {
                 <div>
                   <h5>{frontmatter?.date}</h5>
                   <h3>
-                    <Link to={fields?.slug ?? "/"}>
+                    <AniLink to={fields?.slug!} paintDrip hex={style.primary}>
                       {frontmatter?.title}
-                    </Link>
+                    </AniLink>
                   </h3>
                   <p>{excerpt}</p>
                 </div>

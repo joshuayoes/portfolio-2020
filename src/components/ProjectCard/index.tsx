@@ -1,8 +1,8 @@
 import React from "react"
 import Img, { GatsbyImageFluidProps } from "gatsby-image"
-import { Link } from "gatsby"
 import cn from "classnames"
 import style from "./ProjectCard.module.scss"
+import AniLink from "gatsby-plugin-transition-link/AniLink"
 
 interface Props {
   fluid: GatsbyImageFluidProps["fluid"]
@@ -23,7 +23,7 @@ const ProjectCard: React.FC<Props> = ({
 }) => {
   return (
     <div className={style.project}>
-      <Link to={to} className={cn("portfolio_item", className)}>
+      <AniLink paintDrip hex={style.primary} to={to} className={cn("portfolio_item", className)}>
         <Img fluid={fluid} alt={alt} />
         <div className="portfolio_item_hover">
           <div className="portfolio-border clearfix">
@@ -32,7 +32,7 @@ const ProjectCard: React.FC<Props> = ({
             </div>
           </div>
         </div>
-      </Link>
+      </AniLink>
     </div>
   )
 }

@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, graphql, PageProps } from "gatsby";
+import { graphql, PageProps } from "gatsby";
 
 import SEO from "../components/seo";
 import { rhythm } from "../utils/typography";
@@ -7,6 +7,7 @@ import { ProjectBySlugQuery, SitePageContext } from "../../graphql-types";
 import style from './styles/project.module.scss';
 import Layout from "../components/Layout";
 import Image, { FluidObject } from "gatsby-image";
+import AniLink from "gatsby-plugin-transition-link/AniLink";
 
 const ProjectTemplate: React.FC<
   PageProps<
@@ -55,16 +56,16 @@ const ProjectTemplate: React.FC<
         >
           <li>
             {previousSlug && (
-              <Link to={previousSlug} rel="prev">
+              <AniLink to={previousSlug} rel="prev" cover bg={style.primary} direction="left">
                 ← {previousTitle}
-              </Link>
+              </AniLink>
             )}
           </li>
           <li>
             {nextSlug && nextTitle && (
-              <Link to={nextSlug} rel="next">
+              <AniLink to={nextSlug} rel="next" cover bg={style.primary} direction="right">
                 {nextTitle} →
-              </Link>
+              </AniLink>
             )}
           </li>
         </ul>

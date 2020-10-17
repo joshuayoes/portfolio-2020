@@ -15,3 +15,23 @@ declare module "classnames" {
   const cn: ClassNamesExport;
   export default cn;
 }
+
+declare module "gatsby-plugin-transition-link/AniLink" {
+  import { GatsbyLinkProps } from "gatsby";
+
+  interface Props extends GatsbyLinkProps<any> {
+    paintDrip?: boolean;
+    fade?: boolean;
+    swipe?: boolean;
+    cover?: boolean;
+    duration?: number;
+    entryOffset?: number;
+    direction?: string;
+    top?: string;
+    color?: string;
+    hex?: string;
+    bg?: string;
+  }
+  const AniLink: React.FC<Props>;
+  export default AniLink;
+}
