@@ -23,6 +23,7 @@ const ProjectTemplate: React.FC<
   const nextTitle = next?.frontmatter?.title;
   const previousSlug = previous?.fields?.slug;
   const previousTitle = previous?.frontmatter?.title;
+  const objectPosition = project?.frontmatter?.objectPosition ?? 'center center';
 
   if (!project?.frontmatter?.title) {
     throw Error("post.frontmatter.title is undefined");
@@ -36,7 +37,7 @@ const ProjectTemplate: React.FC<
         title={project.frontmatter.title}
         description={project.frontmatter.description || project.excerpt}
       />
-      <Image className={style.image} fluid={project.frontmatter.thumbnail?.childImageSharp?.fluid as FluidObject} />
+      <Image className={style.image} fluid={project.frontmatter.thumbnail?.childImageSharp?.fluid as FluidObject} imgStyle={{ objectPosition }} />
       <article>
         <h1
           style={{
@@ -99,6 +100,7 @@ export const query = graphql`
         title
         description
         project_link
+        objectPosition
         thumbnail {
           childImageSharp {
             fluid(quality: 90, maxWidth: 1920) {
