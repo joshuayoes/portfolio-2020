@@ -1,10 +1,26 @@
 @import "../../utils/variables";
 
+// Fix for sticky elements with this: https://github.com/TylerBarnes/gatsby-plugin-transition-link/issues/77
+:global {
+  html {
+    overflow: hidden;
+
+    .tl-wrapper > div {
+      height: 100vh;
+      overflow: auto;
+    }
+  }
+}
+
+.top > header {
+  background: transparent;
+}
+
 .header {
   position: sticky;
   top: 0;
   z-index: 100;
-  background-color: white;
+  background-color: $light;
   padding: 20px;
   transition: all 400ms;
 

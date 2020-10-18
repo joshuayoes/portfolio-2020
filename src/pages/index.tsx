@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { graphql, Link, PageProps } from "gatsby";
 import { HomePageQuery } from "../../graphql-types";
 import BackgroundImage, { IFluidObject } from "gatsby-background-image";
@@ -8,7 +8,6 @@ import { scale } from "../utils/typography";
 import Typewriter from "typewriter-effect";
 import { FluidObject } from "gatsby-image";
 import ProjectCard from "../components/ProjectCard";
-import useScrollPosition from "@react-hook/window-scroll"
 import cn from "classnames";
 import SEO from "../components/seo";
 import AniLink from "gatsby-plugin-transition-link/AniLink";
@@ -18,11 +17,8 @@ const HomePage: React.FC<PageProps<HomePageQuery>> = ({ data }) => {
   const projects = data?.projects?.edges;
   const blogPosts = data?.blogPosts?.edges;
 
-  const scrollY = useScrollPosition(60)
-  const isTop = scrollY === 0;
-
   return (
-    <Layout className={cn(style.layout, { [style.top]: isTop })}>
+    <Layout className={cn(style.layout)} clearAtTop>
       <SEO title="Home" />
       <BackgroundImage<"section">
         Tag="section"
