@@ -1,6 +1,6 @@
 ---
 title: Kay Hall Portfolio
-description: Portfolio
+description: Gatsby site
 thumbnail: "./thumbnail.png"
 category: Gatsby
 project_link: https://kay-hall.com
