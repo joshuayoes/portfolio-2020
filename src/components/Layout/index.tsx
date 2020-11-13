@@ -1,9 +1,9 @@
-import React, { MutableRefObject, useCallback, useEffect, useRef, useState } from "react"
-import style from "./Layout.module.scss"
+import React, { useCallback, useEffect, useRef, useState } from "react"
 import cn from "classnames"
 import { FaLinkedin, FaGithub, FaTwitter } from 'react-icons/fa';
 import AniLink from "gatsby-plugin-transition-link/AniLink";
 import throttle from 'lodash/throttle';
+import style from "./Layout.module.scss"
 
 interface Props {
   className?: string;

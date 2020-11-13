@@ -9,6 +9,13 @@ module.exports = {
     },
   },
   plugins: [
+    `gatsby-plugin-sass`,
+    {
+      resolve: `gatsby-plugin-sass-resources`,
+      options: {
+        resources: [`${__dirname}/src/utils/_variables.scss`]
+      }
+    },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -80,7 +87,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-typography`,
       options: {
-        pathToConfigModule: `src/utils/typography`,
+        pathToConfigModule: `${__dirname}/src/utils/typography`,
       },
     },
     {
@@ -89,7 +96,6 @@ module.exports = {
         codegen: false,
       },
     },
-    `gatsby-plugin-sass`,
     `gatsby-plugin-transition-link`,
   ],
 }

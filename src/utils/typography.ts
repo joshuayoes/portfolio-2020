@@ -1,6 +1,9 @@
 import Typography from "typography";
 import TwinPeaks from "typography-theme-twin-peaks";
-import theme from "../utils/_variables.scss";
+const theme = {
+  dark: "#333333",
+  primary: "#425bb5",
+};
 
 // Polyfill for 'typography-breakpoint-constants'
 const MOBILE_MEDIA_QUERY = "@media only screen and (max-width:480px)";
