@@ -8,6 +8,7 @@
 import React from "react"
 import Helmet from "react-helmet"
 import { useStaticQuery, graphql } from "gatsby"
+import { SeoQuery } from "../../graphql-types"
 
 interface Props {
   description?: string
@@ -19,9 +20,9 @@ interface Props {
 }
 
 const SEO = ({ description, lang, meta, title, thumbnail, template = true }: Props) => {
-  const { site } = useStaticQuery(
+  const { site } = useStaticQuery<SeoQuery>(
     graphql`
-      query {
+      query SEO {
         site {
           siteMetadata {
             title
@@ -35,8 +36,8 @@ const SEO = ({ description, lang, meta, title, thumbnail, template = true }: Pro
     `
   )
 
-  const metaDescription = description || site.siteMetadata.description
-  const previewThumbnail = thumbnail || `${site.siteMetadata.siteUrl}/${site.siteMetadata.thumbnail}`
+  const metaDescription = description || site?.siteMetadata?.description!
+  const previewThumbnail = thumbnail || `${site?.siteMetadata?.siteUrl}/${site?.siteMetadata?.thumbnail}`
 
   return (
     <Helmet
@@ -44,7 +45,7 @@ const SEO = ({ description, lang, meta, title, thumbnail, template = true }: Pro
         lang,
       }}
       title={title}
-      titleTemplate={template ? `%s | ${site.siteMetadata.title}` : undefined}
+      titleTemplate={template ? `%s | ${site?.siteMetadata?.title}` : undefined}
       meta={[
         {
           name: `description`,
@@ -56,7 +57,7 @@ const SEO = ({ description, lang, meta, title, thumbnail, template = true }: Pro
         },
         {
           property: `og:url`,
-          content: site.siteMetadata.siteUrl,
+          content: site?.siteMetadata?.siteUrl!,
         },
         {
           property: `og:image`,
@@ -80,7 +81,7 @@ const SEO = ({ description, lang, meta, title, thumbnail, template = true }: Pro
         },
         {
           name: `twitter:creator`,
-          content: site.siteMetadata.author,
+          content: site?.siteMetadata?.author!,
         },
         {
           name: `twitter:title`,
