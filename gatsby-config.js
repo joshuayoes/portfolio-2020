@@ -9,7 +9,7 @@ module.exports = {
       github: `joshuayoes`,
       linkedin: `joshua-yoes`,
     },
-    thumbnail: `home-background.jpg`
+    thumbnail: `thumbnail.jpg`
   },
   plugins: [
     `gatsby-plugin-sass`,
