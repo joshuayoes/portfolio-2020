@@ -14,9 +14,11 @@ interface Props {
   lang?: string
   meta?: []
   title: string
+  template?: boolean;
+  thumbnail?: string;
 }
 
-const SEO = ({ description, lang, meta, title }: Props) => {
+const SEO = ({ description, lang, meta, title, thumbnail, template = true }: Props) => {
   const { site } = useStaticQuery(
     graphql`
       query {
@@ -25,6 +27,8 @@ const SEO = ({ description, lang, meta, title }: Props) => {
             title
             description
             author
+            thumbnail
+            siteUrl
           }
         }
       }
@@ -32,6 +36,7 @@ const SEO = ({ description, lang, meta, title }: Props) => {
   )
 
   const metaDescription = description || site.siteMetadata.description
+  const previewThumbnail = thumbnail || `${site.siteMetadata.siteUrl}/${site.siteMetadata.thumbnail}`
 
   return (
     <Helmet
@@ -39,7 +44,7 @@ const SEO = ({ description, lang, meta, title }: Props) => {
         lang,
       }}
       title={title}
-      titleTemplate={`%s | ${site.siteMetadata.title}`}
+      titleTemplate={template ? `%s | ${site.siteMetadata.title}` : undefined}
       meta={[
         {
           name: `description`,
@@ -48,6 +53,18 @@ const SEO = ({ description, lang, meta, title }: Props) => {
         {
           property: `og:title`,
           content: title,
+        },
+        {
+          property: `og:url`,
+          content: site.siteMetadata.siteUrl,
+        },
+        {
+          property: `og:image`,
+          content: previewThumbnail,
+        },
+        {
+          property: `og:image:secure_url`,
+          content: previewThumbnail,
         },
         {
           property: `og:description`,

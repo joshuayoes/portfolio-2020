@@ -2,11 +2,14 @@ module.exports = {
   siteMetadata: {
     title: `Joshua Yoes`,
     author: `Joshua Yoes`,
-    description: `My personal blog and portfolio.`,
+    description: `Joshua Yoes is a web developer proficient in Javascipt, React, Typescript, and Node. He is located out of Vancouver, Washington`,
     siteUrl: `https://joshuayoes.com/`,
     social: {
       twitter: `joshuayoes`,
+      github: `joshuayoes`,
+      linkedin: `joshua-yoes`,
     },
+    thumbnail: `home-background.jpg`
   },
   plugins: [
     `gatsby-plugin-sass`,

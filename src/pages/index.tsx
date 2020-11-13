@@ -19,7 +19,7 @@ const HomePage: React.FC<PageProps<HomePageQuery>> = ({ data }) => {
 
   return (
     <Layout className={cn(style.layout)} clearAtTop>
-      <SEO title="Home" />
+      <SEO title="Joshua Yoes | Web Developer" template={false} />
       <BackgroundImage<"section">
         Tag="section"
         fluid={hero as IFluidObject}
