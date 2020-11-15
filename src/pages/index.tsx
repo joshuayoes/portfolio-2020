@@ -72,7 +72,7 @@ const HomePage: React.FC<PageProps<HomePageQuery>> = ({ data }) => {
                 <div>
                   <h5>{frontmatter?.date}</h5>
                   <h3>
-                    <AniLink to={fields?.slug!} paintDrip hex={style.primary}>
+                    <AniLink to={`/blog${fields?.slug}`} paintDrip hex={style.primary}>
                       {frontmatter?.title}
                     </AniLink>
                   </h3>
