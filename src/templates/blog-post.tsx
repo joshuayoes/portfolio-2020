@@ -7,6 +7,7 @@ import Layout from "../components/Layout"
 import style from './styles/blog-post.module.scss';
 import { BlogPostBySlugQuery, SitePageContext } from "../../graphql-types"
 import AniLink from "gatsby-plugin-transition-link/AniLink"
+import Image, { FluidObject } from "gatsby-image";
 
 const BlogPostTemplate: React.FC<PageProps<BlogPostBySlugQuery, SitePageContext>> = ({ data, pageContext }) => {
   const post = data?.markdownRemark
@@ -16,8 +17,10 @@ const BlogPostTemplate: React.FC<PageProps<BlogPostBySlugQuery, SitePageContext>
     <Layout className={style.layout}>
       <SEO
         title={post?.frontmatter?.title!}
-        description={post?.frontmatter?.description || post?.excerpt!}
+        description={post?.frontmatter?.description ?? post?.excerpt!}
+        thumbnail={`${data.site?.siteMetadata?.siteUrl}/${post?.frontmatter?.thumbnail?.publicURL}`}
       />
+      <Image className={style.image} fluid={post?.frontmatter?.thumbnail?.childImageSharp?.fluid as FluidObject} />
       <article>
         <p
           style={{
@@ -77,8 +80,7 @@ export const pageQuery = graphql`
   query BlogPostBySlug($slug: String!) {
     site {
       siteMetadata {
-        title
-        author
+        siteUrl
       }
     }
     markdownRemark(fields: { slug: { eq: $slug } }) {
@@ -89,6 +91,14 @@ export const pageQuery = graphql`
         title
         date(formatString: "MMMM DD, YYYY")
         description
+        thumbnail {
+          childImageSharp {
+            fluid(quality: 90, maxWidth: 1200) {
+              ...GatsbyImageSharpFluid
+            }
+          }
+          publicURL
+        }
       }
     }
   }

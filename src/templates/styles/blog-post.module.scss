@@ -1,8 +1,6 @@
 @import "../../utils/variables";
 
-.layout {
-  margin: 0 auto;
-  max-width: inherit;
+div.layout {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='199' viewBox='0 0 100 199'%3E%3Cg fill='%23cdccce' fill-opacity='0.25'%3E%3Cpath d='M0 199V0h1v1.99L100 199h-1.12L1 4.22V199H0zM100 2h-.12l-1-2H100v2z'%3E%3C/path%3E%3C/g%3E%3C/svg%3E");
 
   > header {
@@ -10,26 +8,46 @@
   }
 
   > main {
-    padding: 20px 40px;
-    box-shadow: 0 25px 75px rgba($dark, 0.1);
-    border-radius: 17px;
-    margin: 20px auto 0;
-    background-color: $light;
+    padding: 0;
+    max-width: initial;
+
+    > .image {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    > article {
+      margin: 0 auto;
+
+      @include breakpoint(md) {
+        margin-top: -50px;
+      }
+
+      position: relative;
+      z-index: 1;
+
+      max-width: 70ch;
+      padding: 20px 40px;
+      box-shadow: 0 25px 75px rgba($dark, 0.1);
+      border-radius: 17px;
+      background-color: $light;
+    }
+  }
+}
+
+:global {
+  .gatsby-highlight {
+    margin-bottom: 1em;
   }
 
-  :global {
-    .gatsby-highlight {
-      margin-bottom: 1em;
-    }
-
-    .gatsby-highlight-code-line {
-      background-color: $dark;
-      display: block;
-      margin-right: -1em;
-      margin-left: -1em;
-      padding-right: 1em;
-      padding-left: 0.75em;
-      border-left: 0.25em solid $light;
-    }
+  .gatsby-highlight-code-line {
+    background-color: $dark;
+    display: block;
+    margin-right: -1em;
+    margin-left: -1em;
+    padding-right: 1em;
+    padding-left: 0.75em;
+    border-left: 0.25em solid $light;
   }
 }
