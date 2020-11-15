@@ -1,4 +1,6 @@
-// Fix for sticky elements with this: https://github.com/TylerBarnes/gatsby-plugin-transition-link/issues/77:
+@import "../../utils/variables";
+
+// Fix for sticky elements with this: https://github.com/TylerBarnes/gatsby-plugin-transition-link/issues/77
 :global {
   html {
     overflow: hidden;
