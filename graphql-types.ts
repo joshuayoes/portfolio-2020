@@ -3135,7 +3135,10 @@ export type BioQueryQuery = { avatar?: Maybe<{ childImageSharp?: Maybe<{ fixed?:
 export type SeoQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type SeoQuery = { site?: Maybe<{ siteMetadata?: Maybe<Pick<SiteSiteMetadata, 'title' | 'description' | 'author' | 'thumbnail' | 'siteUrl'>> }> };
+export type SeoQuery = { site?: Maybe<{ siteMetadata?: Maybe<(
+      Pick<SiteSiteMetadata, 'title' | 'description' | 'author' | 'thumbnail' | 'siteUrl'>
+      & { social?: Maybe<Pick<SiteSiteMetadataSocial, 'twitter'>> }
+    )> }> };
 
 export type BlogPageQueryVariables = Exact<{ [key: string]: never; }>;
 

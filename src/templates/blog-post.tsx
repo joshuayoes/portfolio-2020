@@ -19,6 +19,7 @@ const BlogPostTemplate: React.FC<PageProps<BlogPostBySlugQuery, SitePageContext>
         title={post?.frontmatter?.title!}
         description={post?.frontmatter?.description ?? post?.excerpt!}
         thumbnail={`${data.site?.siteMetadata?.siteUrl}/${post?.frontmatter?.thumbnail?.publicURL}`}
+        type="article"
       />
       <Image className={style.image} fluid={post?.frontmatter?.thumbnail?.childImageSharp?.fluid as FluidObject} />
       <article>

@@ -2,7 +2,7 @@
 title: Redux Toolkit - The best state management library you already know
 date: "2020-11-12T04:37:00.000Z"
 thumbnail: "./thumbnail.jpg"
-description: "React famously has a plethora of state management solutions, including but not limited to: Reudx, React Context, MobX, react-query, SWR, Zustard, and many many more."
+description: "React famously has a plethora of state management solutions, including but not limited to: Redux, React Context, MobX, react-query, SWR, Zustard, and many many more."
 ---
 
 React famously has a plethora of state management solutions, including but not limited to:

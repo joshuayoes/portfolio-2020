@@ -17,9 +17,10 @@ interface Props {
   title: string
   template?: boolean;
   thumbnail?: string;
+  type?: string;
 }
 
-const SEO = ({ description, lang, meta, title, thumbnail, template = true }: Props) => {
+const SEO = ({ description, lang, meta, title, thumbnail, type, template = true }: Props) => {
   const { site } = useStaticQuery<SeoQuery>(
     graphql`
       query SEO {
@@ -30,6 +31,9 @@ const SEO = ({ description, lang, meta, title, thumbnail, template = true }: Pro
             author
             thumbnail
             siteUrl
+            social {
+              twitter
+            }
           }
         }
       }
@@ -56,10 +60,6 @@ const SEO = ({ description, lang, meta, title, thumbnail, template = true }: Pro
           content: title,
         },
         {
-          property: `og:url`,
-          content: site?.siteMetadata?.siteUrl!,
-        },
-        {
           property: `og:image`,
           content: previewThumbnail,
         },
@@ -73,15 +73,15 @@ const SEO = ({ description, lang, meta, title, thumbnail, template = true }: Pro
         },
         {
           property: `og:type`,
-          content: `website`,
+          content: type ?? `website`,
         },
         {
           name: `twitter:card`,
-          content: `summary`,
+          content: thumbnail ? `summary_large_image` : `summary`
         },
         {
           name: `twitter:creator`,
-          content: site?.siteMetadata?.author!,
+          content: site?.siteMetadata?.social?.twitter!,
         },
         {
           name: `twitter:title`,
