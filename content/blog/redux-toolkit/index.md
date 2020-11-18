@@ -1,6 +1,6 @@
 ---
 title: Redux Toolkit - The best state management library you already know
-date: "2020-11-12T04:37:00.000Z"
+date: "2020-11-17T04:37:00.000Z"
 thumbnail: "./thumbnail.jpg"
 description: "React famously has a plethora of state management solutions, including but not limited to: Redux, React Context, MobX, react-query, SWR, Zustard, and many many more."
 ---
@@ -123,7 +123,7 @@ The constant displayed here is a departure from traditional constants which usua
 
 ## Immer
 
-Another benefit of Redux Toolkit is that Immer is added to the Redux store out of the box. For those unfamiliar, Immer is a library that allows you to directly mutate state object properties within a slice without any of the risks that normally come with it. Immer makes sure that any mutations are actually returned as new immutable copies to prevent side effects. This allows for much more readable logic in our slices.
+Another benefit of Redux Toolkit is that Immer is added to the Redux store out of the box. For those unfamiliar, [Immer](https://immerjs.github.io/immer/docs/introduction) is a library that allows you to directly mutate state object properties within a slice without any of the risks that normally come with it. Immer makes sure that any mutations are actually returned as new immutable copies to prevent side effects. This allows for much more readable logic in our slices.
 
 Here is an slightly less contrived example of a traditional Redux reducer.
 
@@ -224,7 +224,7 @@ export store = configureStore({
 
 ## Easy Typescript Types
 
-One of my favorite parts of Redux Toolkit is how easy it is to use with Typescript as well. Let's go back to our todo example:
+One of my favorite parts of Redux Toolkit is how easy it is to use with Typescript. Let's go back to our todo example:
 
 ```javascript
 import { createSlice, configureStore } from "@reduxjs/toolkit"
@@ -266,15 +266,18 @@ interface Todo {
   completed: boolean;
 }
 
-// It is easiest to type initialState by extracting it into a variable so we can add a type annotation,
-// but you could also cast it in the createSlice initialState property as well
+// It is easiest to type initialState by extracting it
+// into a variable so we can add a type annotation,
+// but you could also cast it in the createSlice
+// initialState property as well
 const initialState: Todo[] = []
 
 const todosSlice = createSlice({
   name: "todos",
   initialState,
   reducers: {
-    // add the PayloadAction type to the action argument, which accepts the payload type as a generic
+    // add the PayloadAction type to the action argument,
+    // which accepts the payload type as a generic
     addTodo(state, action: PayloadAction<Todo>) {
       const { id, text } = action.payload
       state.push({ id, text, completed: false })
@@ -296,18 +299,19 @@ const store = configureStore({
   },
 })
 
-// We can use this in our useSelector hook or mapStateToProps connect function for full type safety
+// We can use this in our useSelector hook or
+// mapStateToProps connect function for full type safety
 export type RootState = ReturnType<typeof store.getState>
 
 // example usage
-// const mapStateToProps = (state: RootState) => { todos: state.todos };
-// const todos = useSelector((state: RootState) => state.todos);
+const mapStateToProps = (state: RootState) => ({ todos: state.todos })
+const todos = useSelector((state: RootState) => state.todos)
 ```
 
 # Conclusion
 
 Aside from it's improved developer experience, the best part of Redux Toolkit is that most React developers are familiar with Redux, so adopting this library has a very low opportunity cost.
 
-There is more to cover that Redux Toolkit has to offer such as [createAsyncThunk](https://redux-toolkit.js.org/api/createAsyncThunk) and [createEntityManager](https://redux-toolkit.js.org/api/createEntityAdapter), but I believe this is enough to illustrate how Redux Toolkit addresses some of Redux's weaknesses as a state management solution. You can dive deeper into any of the concepts in [Redux Toolkit documentation](https://redux-toolkit.js.org/).
+There is more to cover that Redux Toolkit has to offer such as [createAsyncThunk](https://redux-toolkit.js.org/api/createAsyncThunk) and [createEntityManager](https://redux-toolkit.js.org/api/createEntityAdapter), but I believe this is enough to illustrate how Redux Toolkit addresses some of Redux's weaknesses as a state management solution. You can dive deeper into any of the concepts discussed in this article at the [Redux Toolkit documentation](https://redux-toolkit.js.org/).
 
 Shout outs to [Mark Erikson](https://twitter.com/acemarke) doing a lot of great work with Redux Toolkit and updating Redux's documentation!
