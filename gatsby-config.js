@@ -1,3 +1,5 @@
+require("dotenv").config({path: `.env`})
+
 module.exports = {
   siteMetadata: {
     title: `Joshua Yoes`,
@@ -62,7 +64,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-google-analytics`,
       options: {
-        trackingId: `UA-162011936-2`,
+        trackingId: process.env.GOOGLE_TRACKING_ID,
       },
     },
     {
@@ -94,5 +96,12 @@ module.exports = {
     },
     `gatsby-plugin-sass`,
     `gatsby-plugin-transition-link`,
+    {
+      resolve: 'gatsby-plugin-mailchimp',
+      options: {
+        endpoint: process.env.MAILCHIMP,
+        timeout: 3500, // number; the amount of time, in milliseconds, that you want to allow mailchimp to respond to your request before timing out. defaults to 3500
+      },
+    }
   ],
 }

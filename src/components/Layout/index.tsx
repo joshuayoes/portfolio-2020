@@ -4,6 +4,7 @@ import cn from "classnames"
 import { FaLinkedin, FaGithub, FaTwitter } from 'react-icons/fa';
 import AniLink from "gatsby-plugin-transition-link/AniLink";
 import throttle from 'lodash/throttle';
+import { ToastContainer } from "react-toastify";
 
 interface Props {
   className?: string;
@@ -50,6 +51,7 @@ const Layout: React.FC<Props> = ({ className, children, clearAtTop }) => {
         <a href="https://github.com/joshuayoes"><FaGithub size={44} /></a>
         <a href="https://twitter.com/joshuayoes"><FaTwitter size={44} /></a>
       </footer>
+      <ToastContainer />
     </div>
   )
 }

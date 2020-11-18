@@ -8,8 +8,9 @@ import style from './styles/blog-post.module.scss';
 import { BlogPostBySlugQuery, SitePageContext } from "../../graphql-types"
 import AniLink from "gatsby-plugin-transition-link/AniLink"
 import Image, { FluidObject } from "gatsby-image";
+import EmailSignUp from "../components/EmailSignUp"
 
-const BlogPostTemplate: React.FC<PageProps<BlogPostBySlugQuery, SitePageContext>> = ({ data, pageContext }) => {
+const BlogPostTemplate: React.FC<PageProps<BlogPostBySlugQuery, SitePageContext>> = ({ data, pageContext, path }) => {
   const post = data?.markdownRemark
   const { previous, next } = pageContext
 
@@ -45,7 +46,7 @@ const BlogPostTemplate: React.FC<PageProps<BlogPostBySlugQuery, SitePageContext>
             marginBottom: rhythm(1),
           }}
         />
-
+        <EmailSignUp REFERRAL={`${data.site?.siteMetadata?.siteUrl}${path}`} />
         <ul
           style={{
             display: `flex`,
