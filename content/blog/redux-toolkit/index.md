@@ -2,7 +2,7 @@
 title: Redux Toolkit - The best state management library you already know
 date: "2020-11-17T04:37:00.000Z"
 thumbnail: "./thumbnail.jpg"
-description: "React famously has a plethora of state management solutions, including but not limited to: Redux, React Context, MobX, react-query, SWR, Zustard, and many many more."
+description: "React famously has a plethora of state management solutions, including but not limited to: Redux, React Context, MobX, react-query, SWR, Zustand, and many many more."
 ---
 
 React famously has a plethora of state management solutions, including but not limited to:
@@ -12,7 +12,7 @@ React famously has a plethora of state management solutions, including but not l
 - MobX
 - react-query
 - SWR
-- Zustard
+- Zustand
 - and many, many more...
 
 However, most React developers have likely run across a component like this:
@@ -312,6 +312,6 @@ const todos = useSelector((state: RootState) => state.todos)
 
 Aside from it's improved developer experience, the best part of Redux Toolkit is that most React developers are familiar with Redux, so adopting this library has a very low opportunity cost.
 
-There is more to cover that Redux Toolkit has to offer such as [createAsyncThunk](https://redux-toolkit.js.org/api/createAsyncThunk) and [createEntityManager](https://redux-toolkit.js.org/api/createEntityAdapter), but I believe this is enough to illustrate how Redux Toolkit addresses some of Redux's weaknesses as a state management solution. You can dive deeper into any of the concepts discussed in this article at the [Redux Toolkit documentation](https://redux-toolkit.js.org/).
+There is more to cover that Redux Toolkit has to offer such as [createAsyncThunk](https://redux-toolkit.js.org/api/createAsyncThunk) and [createEntityAdapter](https://redux-toolkit.js.org/api/createEntityAdapter), but I believe this is enough to illustrate how Redux Toolkit addresses some of Redux's weaknesses as a state management solution. You can dive deeper into any of the concepts discussed in this article at the [Redux Toolkit documentation](https://redux-toolkit.js.org/).
 
 Shout outs to [Mark Erikson](https://twitter.com/acemarke) doing a lot of great work with Redux Toolkit and updating Redux's documentation!
