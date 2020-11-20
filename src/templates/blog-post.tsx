@@ -7,7 +7,7 @@ import Layout from "../components/Layout"
 import style from './styles/blog-post.module.scss';
 import { BlogPostBySlugQuery, SitePageContext } from "../../graphql-types"
 import AniLink from "gatsby-plugin-transition-link/AniLink"
-import Image, { FluidObject } from "gatsby-image";
+import GatsbyImage, { FixedObject, FluidObject } from "gatsby-image";
 import EmailSignUp from "../components/EmailSignUp"
 
 const BlogPostTemplate: React.FC<PageProps<BlogPostBySlugQuery, SitePageContext>> = ({ data, pageContext, path }) => {
@@ -22,29 +22,29 @@ const BlogPostTemplate: React.FC<PageProps<BlogPostBySlugQuery, SitePageContext>
         thumbnail={`${data.site?.siteMetadata?.siteUrl}/${post?.frontmatter?.thumbnail?.publicURL}`}
         type="article"
       />
-      <Image className={style.image} fluid={post?.frontmatter?.thumbnail?.childImageSharp?.fluid as FluidObject} />
+      <GatsbyImage className={style.image} fluid={post?.frontmatter?.thumbnail?.childImageSharp?.fluid as FluidObject} />
       <article>
-        <p
-          style={{
-            ...scale(-1 / 5),
-            display: `block`,
-            marginBottom: 0,
-          }}
-        >
-          {post?.frontmatter?.date!}
-        </p>
         <h1
           style={{
             marginTop: rhythm(1 / 5),
           }}
-        >
+          >
           {post?.frontmatter?.title!}
-        </h1>
+        </h1> 
+        <ul>
+          <li>
+            <div>
+              <GatsbyImage fixed={data?.avatar?.childImageSharp?.fixed as FixedObject} alt={`${data?.site?.siteMetadata?.author}`} />
+              <div>
+                <h6>{data?.site?.siteMetadata?.author}</h6>
+                <small>{post?.frontmatter?.date!}</small>
+              </div>
+            </div>
+          </li>
+          <li><small>{post?.fields?.readingTime?.text}</small></li>
+        </ul>
         <div dangerouslySetInnerHTML={{ __html: post?.html! }} />
-        <hr
-          style={{
-            marginBottom: rhythm(1),
-          }}
+        <hr style={{ marginBottom: rhythm(1) }}
         />
         <EmailSignUp REFERRAL={`${data.site?.siteMetadata?.siteUrl}${path}`} />
         <ul
@@ -83,6 +83,14 @@ export const pageQuery = graphql`
     site {
       siteMetadata {
         siteUrl
+        author
+      }
+    }
+    avatar: file(absolutePath: { regex: "/profile-pic.jpg/" }) {
+      childImageSharp {
+        fixed(width: 50, height: 50) {
+          ...GatsbyImageSharpFixed
+        }
       }
     }
     markdownRemark(fields: { slug: { eq: $slug } }) {
@@ -100,6 +108,11 @@ export const pageQuery = graphql`
             }
           }
           publicURL
+        }
+      }
+      fields {
+        readingTime {
+          text
         }
       }
     }

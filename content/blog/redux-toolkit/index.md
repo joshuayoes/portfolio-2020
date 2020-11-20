@@ -1,6 +1,6 @@
 ---
 title: Redux Toolkit - The best state management library you already know
-date: "2020-11-17T04:37:00.000Z"
+date: "2020-11-19T04:37:00.000Z"
 thumbnail: "./thumbnail.jpg"
 description: "React famously has a plethora of state management solutions, including but not limited to: Redux, React Context, MobX, react-query, SWR, Zustand, and many many more."
 ---

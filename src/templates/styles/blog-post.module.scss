@@ -24,14 +24,65 @@ div.layout {
         margin-top: -50px;
       }
 
+      > ul {
+        display: flex;
+        flex-wrap: wrap;
+        margin: 0;
+        padding: 0;
+        list-style-type: none;
+
+        > li {
+          $spacing: 0.8em;
+          padding-right: $spacing;
+          white-space: nowrap;
+          color: rgba($dark, 0.5);
+          display: grid;
+          align-items: center;
+
+          &:not(:first-of-type) {
+            margin-left: $spacing;
+          }
+
+          &:not(:last-of-type) {
+            border-right: 1px solid rgba($dark, 0.2);
+          }
+
+          > div {
+            display: grid;
+            grid-auto-flow: column;
+            gap: 4px $spacing;
+            align-items: center;
+
+            div > * {
+              margin: 0;
+              padding: 0;
+            }
+
+            > div:first-of-type {
+              border-radius: 100%;
+            }
+
+            > div:last-of-type {
+              display: grid;
+              align-items: end;
+              grid-template-rows: 1fr 1fr;
+            }
+          }
+        }
+      }
+
       position: relative;
       z-index: 1;
 
-      max-width: 70ch;
-      padding: 20px 40px;
+      max-width: 75ch;
       box-shadow: 0 25px 75px rgba($dark, 0.1);
       border-radius: 17px;
       background-color: $light;
+
+      padding: 20px 20px;
+      @include breakpoint(md) {
+        padding: 40px 40px;
+      }
     }
   }
 }
