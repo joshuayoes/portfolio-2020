@@ -78,7 +78,7 @@ The purpose of the Flux design pattern is to centralize logic for updating state
 
 However, even the most well-intentioned solutions can introduce new problems. In this case, we have solved the issue of centralizing our state logic in one place, but we have introduced a new problem: updating state here means updating 4 pieces of logic to get our state to update: the constant, the reducer, the action creator and the dispatcher. And given that the React website itself says that it is built to design simple views for each state in your application, that is a lot of work to do a core purpose of the library.
 
-# Enter Redux Toolkit
+## Enter Redux Toolkit
 
 Redux Toolkit solves this issue with a new abstraction: createSlice. createSlice wraps constants, action creators, and reducers into one place. Instead of updating your logic in four places, you can do it in two: the slice and the dispatcher.
 
@@ -211,7 +211,7 @@ export default function configureStore(preloadedState) {
 }
 ```
 
-And is simplfied to this:
+And is simplified to this:
 
 ```javascript
 import { configureStore } from '@reduxjs/toolkit'
@@ -308,7 +308,7 @@ const mapStateToProps = (state: RootState) => ({ todos: state.todos })
 const todos = useSelector((state: RootState) => state.todos)
 ```
 
-# Conclusion
+## Conclusion
 
 Aside from it's improved developer experience, the best part of Redux Toolkit is that most React developers are familiar with Redux, so adopting this library has a very low opportunity cost.
 
