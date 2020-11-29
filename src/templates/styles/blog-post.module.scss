@@ -24,7 +24,7 @@ div.layout {
         margin-top: -50px;
       }
 
-      > ul {
+      > ul:first-of-type {
         display: flex;
         flex-wrap: wrap;
         margin: 0;
