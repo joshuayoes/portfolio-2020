@@ -4,7 +4,7 @@ module.exports = {
   siteMetadata: {
     title: `Joshua Yoes`,
     author: `Joshua Yoes`,
-    description: `Joshua Yoes is a web developer proficient in Javascipt, React, Typescript, and Node. He is located out of Vancouver, Washington`,
+    description: `Joshua Yoes is a web developer proficient in Javascript, React, Typescript, and Node. He is located out of Vancouver, Washington`,
     siteUrl: `https://joshuayoes.com/`,
     social: {
       twitter: `joshuayoes`,

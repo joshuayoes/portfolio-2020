@@ -76,7 +76,7 @@ const HomePage: React.FC<PageProps<HomePageQuery>> = ({ data }) => {
                       {frontmatter?.title}
                     </AniLink>
                   </h3>
-                  <p>{excerpt}</p>
+                  <p>{frontmatter?.description ?? excerpt}</p>
                 </div>
               </li>
             ))}
@@ -130,6 +130,7 @@ export const query = graphql`
           frontmatter {
             date(formatString: "MMMM DD, YYYY")
             title
+            description
           }
         }
       }
