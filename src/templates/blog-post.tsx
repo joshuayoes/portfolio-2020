@@ -58,14 +58,14 @@ const BlogPostTemplate: React.FC<PageProps<BlogPostBySlugQuery, SitePageContext>
         >
           <li>
             {previous && (
-              <AniLink to={previous?.fields?.slug!} rel="prev" cover bg={style.primary} direction="left">
+              <AniLink to={`/blog` + previous?.fields?.slug!} rel="prev" cover bg={style.primary} direction="left">
                 ← {previous?.frontmatter?.title}
               </AniLink>
             )}
           </li>
           <li>
             {next && (
-              <AniLink to={next?.fields?.slug!} rel="next" cover bg={style.primary} direction="right">
+              <AniLink to={`/blog` + next?.fields?.slug!} rel="next" cover bg={style.primary} direction="right">
                 {next?.frontmatter?.title} →
               </AniLink>
             )}
